@@ -47,7 +47,7 @@ const About = () => {
             ahead.
           </p>
           <p>
-            Looking ahead, I know the journey doesn't end. The finish line is
+            Looking ahead, I know the journey doesn&apos;t end. The finish line is
             <span className="text-textGreen"> ever-evolving,</span> the
             challenges continue to transform, and my appetite for learning and
             growth amplifies. I eagerly{" "}
