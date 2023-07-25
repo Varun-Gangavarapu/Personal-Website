@@ -21,10 +21,12 @@ const Projects = () => {
             >
               <div>
                 <Image
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain rounded-lg"
                   src={project1}
                   alt="Project 1 Image"
                 />
+              <div className="hidden lgl:inline-block absolute w-full h-[27rem] bg-imgCover/40 rounded-lg top-0 left-0 group-hover:bg-transparent duration-300"></div>
+
               </div>
             </a>
             <div className="w-full h-4/5 mt-7 xl:w-1/2 flex flex-col gap-6 lgl:justify-between items-end text-right xl:-ml-16 z-10">
@@ -78,10 +80,12 @@ const Projects = () => {
             >
               <div>
                 <Image
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain rounded-lg"
                   src={project2}
                   alt="Project 2 Image"
                 />
+              <div className="hidden lgl:inline-block absolute w-full h-[27rem] bg-imgCover/40 rounded-lg top-0 left-0 group-hover:bg-transparent duration-300"></div>
+
               </div>
             </a>
             <div className="w-full h-4/5 mt-7 xl:w-1/2 flex flex-col gap-6 lgl:justify-between items-end text-right  z-10">
