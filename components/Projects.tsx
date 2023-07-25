@@ -25,7 +25,7 @@ const Projects = () => {
                   src={project1}
                   alt="Project 1 Image"
                 />
-              <div className="hidden lgl:inline-block absolute w-full h-[27rem] bg-imgCover/40 rounded-lg top-0 left-0 group-hover:bg-transparent duration-300"></div>
+              <div className="hidden lgl:inline-block absolute w-full h-full bg-imgCover/40 rounded-lg top-0 left-0 group-hover:bg-transparent duration-300"></div>
 
               </div>
             </a>
@@ -80,11 +80,11 @@ const Projects = () => {
             >
               <div>
                 <Image
-                  className="w-full h-full object-contain rounded-lg"
+                  className="w-full h-full object-contain rounded-md"
                   src={project2}
                   alt="Project 2 Image"
                 />
-              <div className="hidden lgl:inline-block absolute w-full h-[27rem] bg-imgCover/40 rounded-lg top-0 left-0 group-hover:bg-transparent duration-300"></div>
+              <div className="hidden lgl:inline-block absolute w-full h-full bg-imgCover/40 rounded-md top-0 left-0 group-hover:bg-transparent duration-300"></div>
 
               </div>
             </a>
