@@ -5,24 +5,38 @@ import A2Z from "./works/A2Z";
 import CSR from "./works/CSR";
 import BluePrint from "./works/BluePrint";
 import EC from "./works/EC";
+import Mercantile from "./works/Mercantile";
 
 const Experience = () => {
   const [workAmneal, setWorkAmneal] = useState(true);
+  const [workMerc, setWorkMerc] = useState(false);
   const [workCSR, setWorkCSR] = useState(false);
   const [workBluePrint, setWorkBluePrint] = useState(false);
   const [workEC, setWorkEC] = useState(false);
   const [workA2Z, setWorkA2Z] = useState(false);
 
+  
   const handleAmneal = () => {
     setWorkAmneal(true);
+    setWorkMerc(false);
     setWorkCSR(false);
     setWorkBluePrint(false);
     setWorkEC(false);
     setWorkA2Z(false);
   };
 
+  const handleMerc = () => {
+    setWorkAmneal(false);
+    setWorkMerc(true);
+    setWorkCSR(false);
+    setWorkBluePrint(false);
+    setWorkEC(false);
+    setWorkA2Z(false);
+  };
+  
   const handleCSR = () => {
     setWorkAmneal(false);
+    setWorkMerc(false);
     setWorkCSR(true);
     setWorkBluePrint(false);
     setWorkEC(false);
@@ -31,6 +45,7 @@ const Experience = () => {
 
   const handleBluePrint = () => {
     setWorkAmneal(false);
+    setWorkMerc(false);
     setWorkCSR(false);
     setWorkBluePrint(true);
     setWorkEC(false);
@@ -39,6 +54,7 @@ const Experience = () => {
 
   const handleEC = () => {
     setWorkAmneal(false);
+    setWorkMerc(false);
     setWorkCSR(false);
     setWorkBluePrint(false);
     setWorkEC(true);
@@ -47,6 +63,7 @@ const Experience = () => {
 
   const handleA2Z = () => {
     setWorkAmneal(false);
+    setWorkMerc(false);
     setWorkCSR(false);
     setWorkBluePrint(false);
     setWorkEC(false);
@@ -72,6 +89,18 @@ const Experience = () => {
           hover:bg-[#112240] py-3 text-sm cursor-pointer duration-300 px-8 font-medium`}
           >
             Amneal Pharmacuticals
+          </li>
+
+          <li
+            onClick={handleMerc}
+            className={`${
+              workMerc
+                ? "border-l-textGreen text-textGreen"
+                : "border-l-hoverColor text-textDark"
+            } border-l-2 bg-transparent 
+          hover:bg-[#112240] py-3 text-sm cursor-pointer duration-300 px-8 font-medium`}
+          >
+            Mercantile Systems Inc.
           </li>
 
           <li
@@ -122,7 +151,10 @@ const Experience = () => {
             A2Z Mentoring
           </li>
         </ul>
+
         {workAmneal && <Amneal />}
+        {workMerc && <Mercantile />}
+
         {workCSR && <CSR />}
         {workBluePrint && <BluePrint />}
         {workEC && <EC />}
