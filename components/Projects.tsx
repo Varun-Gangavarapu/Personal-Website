@@ -37,7 +37,7 @@ const Projects = () => {
               </h3>
               <p className="bg-[#112240] text-sm md:text-base p-2 md:p-6 rounded-md">
                 An innovative music recommendation engine that utilizes vector
-                databases and machine learning to analyze users' emotional
+                databases and machine learning to analyze users&apos; emotional
                 responses to song lyrics, offering personalized playlists based
                 on mood and sentiment.
               </p>
