@@ -46,7 +46,7 @@ const Projects = () => {
                 <li>Flask</li>
                 <li>Pinecone</li>
                 <li>Spotify API</li>
-                <li>HTML</li>
+                <li>OAuth</li>
                 <li>JavaScript</li>
                 <li>CSS</li>
               </ul>
