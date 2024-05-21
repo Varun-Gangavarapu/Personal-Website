@@ -79,7 +79,7 @@ const Projects = () => {
             {/* Fill the href with the link to the project */}
             <a
               className="w-full xl:w-1/2 h-auto relative group"
-              href=""
+              href="https://github.com/Varun-Gangavarapu/VectorDatabaseMoodAnalysis"
               target="_blank"
             >
               <div>
@@ -99,7 +99,7 @@ const Projects = () => {
               <p className="bg-[#112240] text-sm md:text-base p-2 xl:-mr-16 md:p-6 rounded-md">
                 A digital platform that connects students by allowing them to
                 sign in and discover peers who have taken the same classes,
-                encompassing a vast database of over 10,000 courses.
+                encompassing a vast database of over 8,000 courses.
               </p>
               <ul className="text-xs md:text-sm font-titleFont tracking-wide flex gap-2 md:gap-5 justify-between text-textDark">
                 <li>Next.js</li>
@@ -112,7 +112,7 @@ const Projects = () => {
               </ul>
               <div className="text-2xl flex gap-4">
                 {/* Fill the href with the link to the project github*/}
-                <a href="" target="_blank">
+                <a href="https://github.com/ArunAvasi/CourseReveal" target="_blank">
                   <span
                     className="w-10 h-10 text-xl bg-hoverColor rounded-full inline-flex items-center justify-center hover:text-textGreen cursor-pointer 
                                 hover:-translate-y-2 transition-all duration-300"

@@ -5,11 +5,11 @@ import A2Z from "./works/A2Z";
 import CSR from "./works/CSR";
 import BluePrint from "./works/BluePrint";
 import EC from "./works/EC";
-import Mercantile from "./works/Mercantile";
+import QuantFinance from "./works/QuantFinance";
 
 const Experience = () => {
   const [workAmneal, setWorkAmneal] = useState(true);
-  const [workMerc, setWorkMerc] = useState(false);
+  const [workQuant, setWorkQuant] = useState(false);
   const [workCSR, setWorkCSR] = useState(false);
   const [workBluePrint, setWorkBluePrint] = useState(false);
   const [workEC, setWorkEC] = useState(false);
@@ -18,16 +18,16 @@ const Experience = () => {
   
   const handleAmneal = () => {
     setWorkAmneal(true);
-    setWorkMerc(false);
+    setWorkQuant(false);
     setWorkCSR(false);
     setWorkBluePrint(false);
     setWorkEC(false);
     setWorkA2Z(false);
   };
 
-  const handleMerc = () => {
+  const handleQuant = () => {
     setWorkAmneal(false);
-    setWorkMerc(true);
+    setWorkQuant(true);
     setWorkCSR(false);
     setWorkBluePrint(false);
     setWorkEC(false);
@@ -36,7 +36,7 @@ const Experience = () => {
   
   const handleCSR = () => {
     setWorkAmneal(false);
-    setWorkMerc(false);
+    setWorkQuant(false);
     setWorkCSR(true);
     setWorkBluePrint(false);
     setWorkEC(false);
@@ -45,7 +45,7 @@ const Experience = () => {
 
   const handleBluePrint = () => {
     setWorkAmneal(false);
-    setWorkMerc(false);
+    setWorkQuant(false);
     setWorkCSR(false);
     setWorkBluePrint(true);
     setWorkEC(false);
@@ -54,7 +54,7 @@ const Experience = () => {
 
   const handleEC = () => {
     setWorkAmneal(false);
-    setWorkMerc(false);
+    setWorkQuant(false);
     setWorkCSR(false);
     setWorkBluePrint(false);
     setWorkEC(true);
@@ -63,7 +63,7 @@ const Experience = () => {
 
   const handleA2Z = () => {
     setWorkAmneal(false);
-    setWorkMerc(false);
+    setWorkQuant(false);
     setWorkCSR(false);
     setWorkBluePrint(false);
     setWorkEC(false);
@@ -92,15 +92,15 @@ const Experience = () => {
           </li>
 
           <li
-            onClick={handleMerc}
+            onClick={handleQuant}
             className={`${
-              workMerc
+              workQuant
                 ? "border-l-textGreen text-textGreen"
                 : "border-l-hoverColor text-textDark"
             } border-l-2 bg-transparent 
           hover:bg-[#112240] py-3 text-sm cursor-pointer duration-300 px-8 font-medium`}
           >
-            Mercantile Systems Inc.
+            Quantitative Finance Club
           </li>
 
           <li
@@ -153,8 +153,7 @@ const Experience = () => {
         </ul>
 
         {workAmneal && <Amneal />}
-        {workMerc && <Mercantile />}
-
+        {workQuant && <QuantFinance />}
         {workCSR && <CSR />}
         {workBluePrint && <BluePrint />}
         {workEC && <EC />}
