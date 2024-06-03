@@ -112,7 +112,7 @@ const Projects = () => {
               </ul>
               <div className="text-2xl flex gap-4">
                 {/* Fill the href with the link to the project github*/}
-                <a href="https://github.com/ArunAvasi/CourseReveal" target="_blank">
+                <a href="https://github.com/Varun-Gangavarapu/CourseReveal" target="_blank">
                   <span
                     className="w-10 h-10 text-xl bg-hoverColor rounded-full inline-flex items-center justify-center hover:text-textGreen cursor-pointer 
                                 hover:-translate-y-2 transition-all duration-300"
