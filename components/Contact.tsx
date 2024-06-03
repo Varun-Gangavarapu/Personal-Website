@@ -14,7 +14,7 @@ const Contact = () => {
         and provide value with my skillset. My inbox is always open, so feel
         free to contact me and I&apos;ll try my best to get back to you!{" "}
       </p>
-      <a href="mailto:varunsaigangavarapu@gmail.com">
+      <a href="mailto:varunsgang@gmail.com">
         <button
           className="w-40 h-14 border border-textGreen mt-6 font-titleFont text-sm text-textGreen tracking-wider rounded-md
          hover:bg-hoverColor duration-308"
