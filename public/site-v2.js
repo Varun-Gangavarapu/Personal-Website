@@ -147,7 +147,7 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
 // Keep the editorial reveals tied to scroll position so they reverse naturally.
 if (!reducedMotion.matches) {
   document.documentElement.classList.add('has-motion');
-  const revealElements = [...document.querySelectorAll('.work-intro h2, .work-intro-heading p, .timeline-entry, .work-case-copy, .work-case-image, .work-story-item, .contact h2, .contact-main>p, .contact-email')];
+  const revealElements = [...document.querySelectorAll('.work-intro h2, .work-intro-heading p, .timeline-entry, .work-case-copy, .work-case-image, .work-story-item, .contact h2, .contact-main>p, .contact-email, .contact-destinations a')];
   revealElements.forEach(element => element.classList.add('scroll-reveal'));
   let revealRequested = false;
   const renderReveals = () => {
@@ -168,4 +168,106 @@ if (!reducedMotion.matches) {
   window.addEventListener('scroll', requestReveals, {passive: true});
   window.addEventListener('resize', requestReveals);
   requestReveals();
+}
+
+// A responsive ASCII study of Michelangelo's public-domain Creation of Adam hands.
+// Source: https://commons.wikimedia.org/wiki/File:Creation_of_Adam_(Michelangelo)_Detail.jpg
+const asciiArt = document.querySelector('.ascii-art');
+if (asciiArt) {
+  const canvas = asciiArt.querySelector('canvas');
+  const context = canvas.getContext('2d');
+  const baseCanvas = document.createElement('canvas');
+  const baseContext = baseCanvas.getContext('2d');
+  const sourceCanvas = document.createElement('canvas');
+  const sourceContext = sourceCanvas.getContext('2d', {willReadFrequently: true});
+  const mask = new Image();
+  let sourcePixels;
+  let glyphs = [];
+  let pointer = null;
+  let paintRequested = false;
+  let width = 0;
+  let height = 0;
+  let fontSize = 8;
+  let pixelRatio = 1;
+
+  const paint = () => {
+    paintRequested = false;
+    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    context.clearRect(0, 0, width, height);
+    context.drawImage(baseCanvas, 0, 0, width, height);
+    if (!pointer || reducedMotion.matches) return;
+    const radius = Math.min(190, width * .24);
+    context.font = `${fontSize}px monospace`;
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    for (const glyph of glyphs) {
+      const distance = Math.hypot(glyph.x - pointer.x, glyph.y - pointer.y);
+      if (distance >= radius) continue;
+      const glow = (1 - distance / radius) ** 2;
+      context.fillStyle = `rgba(187, 245, 211, ${Math.min(.9, glyph.alpha * glow * .85)})`;
+      context.fillText(glyph.char, glyph.x, glyph.y);
+    }
+  };
+  const requestPaint = () => {
+    if (paintRequested) return;
+    paintRequested = true;
+    requestAnimationFrame(paint);
+  };
+  const rebuild = () => {
+    if (!sourcePixels) return;
+    const bounds = asciiArt.getBoundingClientRect();
+    width = Math.round(bounds.width);
+    height = Math.round(bounds.height);
+    if (!width || !height) return;
+    pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = baseCanvas.width = Math.round(width * pixelRatio);
+    canvas.height = baseCanvas.height = Math.round(height * pixelRatio);
+    baseContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    baseContext.clearRect(0, 0, width, height);
+    fontSize = width < 600 ? 4.4 : Math.min(8.5, Math.max(6, width / 195));
+    const stepX = fontSize * .72;
+    const stepY = fontSize * 1.22;
+    const scale = Math.min(width / mask.naturalWidth, height / mask.naturalHeight);
+    const artWidth = mask.naturalWidth * scale;
+    const artHeight = mask.naturalHeight * scale;
+    const left = (width - artWidth) / 2;
+    const top = (height - artHeight) / 2;
+    const characters = '@#%*+=-:.';
+    const mobile = width < 600;
+    glyphs = [];
+    baseContext.font = `${fontSize}px monospace`;
+    baseContext.textAlign = 'center';
+    baseContext.textBaseline = 'middle';
+    for (let y = top + stepY / 2; y < top + artHeight; y += stepY) {
+      for (let x = left + stepX / 2; x < left + artWidth; x += stepX) {
+        const sourceX = Math.min(mask.naturalWidth - 1, Math.floor((x - left) / scale));
+        const sourceY = Math.min(mask.naturalHeight - 1, Math.floor((y - top) / scale));
+        const pixel = (sourceY * mask.naturalWidth + sourceX) * 4;
+        const alpha = sourcePixels[pixel + 3] / 255;
+        if (alpha < .13) continue;
+        const tone = sourcePixels[pixel] / 255;
+        const char = characters[Math.min(characters.length - 1, Math.floor(tone * characters.length))];
+        const opacity = Math.min(mobile ? .88 : .74, Math.max(mobile ? .2 : .14, alpha * (mobile ? .9 : .72) + (1 - tone) * .15));
+        glyphs.push({x, y, char, alpha});
+        baseContext.fillStyle = `rgba(103, 190, 159, ${opacity})`;
+        baseContext.fillText(char, x, y);
+      }
+    }
+    requestPaint();
+  };
+  mask.onload = () => {
+    sourceCanvas.width = mask.naturalWidth;
+    sourceCanvas.height = mask.naturalHeight;
+    sourceContext.drawImage(mask, 0, 0);
+    sourcePixels = sourceContext.getImageData(0, 0, mask.naturalWidth, mask.naturalHeight).data;
+    rebuild();
+  };
+  mask.src = '/assets/creation-hands-mask.webp';
+  new ResizeObserver(rebuild).observe(asciiArt);
+  asciiArt.addEventListener('pointermove', event => {
+    const bounds = asciiArt.getBoundingClientRect();
+    pointer = {x: event.clientX - bounds.left, y: event.clientY - bounds.top};
+    requestPaint();
+  });
+  asciiArt.addEventListener('pointerleave', () => {pointer = null; requestPaint();});
 }
