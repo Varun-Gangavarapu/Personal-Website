@@ -82,7 +82,7 @@ links.forEach(link => link.addEventListener('click', () => {
   nav.classList.remove('is-open');
 }));
 
-const sections = ['home', 'work', 'contact'].map(id => document.getElementById(id));
+const sections = ['home', 'work', 'amazon-ft', 'contact'].map(id => document.getElementById(id));
 const darkSections = [...document.querySelectorAll('.work-panel-three, .contact')];
 const onScroll = () => {
   header.classList.toggle('is-scrolled', window.scrollY > 36);

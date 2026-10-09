@@ -502,6 +502,20 @@
 .site-header.is-dark .main-nav .nav-resume{border-color:rgba(240,241,237,.32)}
 @media(max-width:700px){.main-nav .nav-resume{margin:8px 0 0;border-radius:10px;padding:14px 8px}}
 
+/* Keep the expanded navigation legible until there is room for the full pill. */
+@media(max-width:1000px){
+  .menu-toggle{display:flex;border:0;background:transparent;flex-direction:column;justify-content:center;gap:6px;width:34px;height:34px;padding:0}
+  .menu-toggle span{display:block;height:1px;background:currentColor;width:100%}
+  .main-nav{position:absolute;top:100%;left:12px;right:12px;display:none;flex-direction:column;align-items:stretch;gap:0;padding:10px 18px;border-radius:16px;background:rgba(238,233,215,.98)}
+  .main-nav.is-open{display:flex}
+  .main-nav a{border-radius:0;font-size:15px;padding:16px 8px;border-bottom:1px solid var(--line)}
+  .main-nav a.active,.main-nav a:hover,.site-header.is-scrolled .main-nav a.active,.site-header.is-scrolled .main-nav a:hover{background:transparent;color:var(--ink)}
+  .main-nav .nav-resume{margin:8px 0 0;border-radius:10px;padding:14px 8px}
+  .site-header.is-dark .menu-toggle{color:#f0f1ed}
+  .site-header.is-dark .main-nav{background:#111514;color:#f0f1ed}
+  .site-header.is-dark .main-nav a.active,.site-header.is-dark .main-nav a:hover{background:transparent;color:#f0f1ed}
+}
+
 /* Keep the original case-study palette and alternate portrait placement. */
 @media(min-width:701px){
   .work-panel{display:grid;grid-template-columns:minmax(0,48fr) minmax(0,52fr);grid-template-rows:auto auto auto;column-gap:clamp(38px,4vw,64px);align-items:start;align-content:center;min-height:100svh;padding:clamp(70px,7vh,90px) max(22px,calc((100vw - 1440px)/2)) clamp(35px,4vh,48px)}
