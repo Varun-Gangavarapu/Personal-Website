@@ -8,7 +8,7 @@
     <meta property="og:title" content="Varun Gangavarapu — Software Engineer" />
     <meta property="og:description" content="Selected work across optimization, digital twins, and vector-based recommendations." />
     <meta property="og:type" content="website" />
-    <title>Varun Gangavarapu — Software Engineer at Amazon</title>
+    <title>Varun Gangavarapu — Software Engineer</title>
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="/assets/hero-goggles.mp4" as="video" type="video/mp4" />
     <link rel="stylesheet" href="/styles.css" />
@@ -23,35 +23,44 @@
       </button>
       <nav id="main-nav" class="main-nav" aria-label="Main navigation">
         <a href="#home" data-section="home"><span>01</span> HOME</a>
-        <a href="#work" data-section="work"><span>02</span> EXPERIENCE</a>
+        <a href="#work" data-section="work"><span>02</span> WORK</a>
         <a href="#about" data-section="about"><span>03</span> ABOUT</a>
         <a href="#contact" data-section="contact"><span>04</span> CONTACT</a>
       </nav>
     </header>
 
     <main id="main">
-      <section class="hero" id="home" aria-labelledby="hero-title">
-        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/assets/hero-goggles-poster.jpg" aria-hidden="true">
-          <source src="/assets/hero-goggles.mp4" type="video/mp4" />
-        </video>
-        <div class="hero-shade" aria-hidden="true"></div>
-        <div class="hero-content wrap">
-          <p class="eyebrow hero-eyebrow">VARUN GANGAVARAPU <span class="sparkle">✳</span> SOFTWARE ENGINEER</p>
-          <h1 id="hero-title">BUILDING<br />AT <strong>AMAZON.</strong></h1>
-          <p class="hero-intro">I turn complex operations into faster decisions, better tools, and systems built to scale.</p>
-          <a class="split-button" href="#work"><span>SEE MY EXPERIENCE</span><span class="button-arrow" aria-hidden="true">↗</span></a>
+      <section class="cinematic" id="home" aria-label="Opening film">
+        <div class="cinematic-stage">
+          <video class="cinematic-video" muted playsinline preload="auto" poster="/assets/hero-goggles-poster.jpg" aria-hidden="true">
+            <source src="/assets/hero-goggles.mp4" type="video/mp4" />
+          </video>
+          <div class="cinematic-wash" aria-hidden="true"></div>
+          <div class="cinematic-caption"><span>VARUN GANGAVARAPU<br />SOFTWARE ENGINEER</span><span>SCROLL TO ENTER &nbsp;↓</span></div>
+          <div class="cinematic-progress" aria-hidden="true"><span></span></div>
         </div>
-        <div class="hero-bottom"><span>AMAZON SDE / SEATTLE, WA / 2026—PRESENT</span><a href="#work">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div>
+      </section>
+
+      <section class="personal-intro" aria-labelledby="hero-title">
+        <div class="wrap intro-grid">
+          <p class="section-kicker">01 / INTRODUCTION</p>
+          <div>
+            <h1 id="hero-title">HI, I’M<br /><em>VARUN.</em></h1>
+            <p>I make complex systems feel useful — from the algorithms behind a decision to the interface that helps someone act on it.</p>
+            <div class="intro-actions"><a class="split-button" href="#work"><span>EXPLORE MY WORK</span><span class="button-arrow" aria-hidden="true">↗</span></a><a class="intro-resume" href="/assets/Varun_Gangavarapu_Resume.pdf" target="_blank" rel="noopener noreferrer">VIEW RÉSUMÉ ↗</a></div>
+          </div>
+        </div>
+        <div class="intro-footer wrap"><span>ENGINEERING / PRODUCT / CURIOSITY</span><span>SEATTLE, WA · 2026</span></div>
       </section>
 
       <section class="work-intro" id="work" aria-labelledby="work-title">
         <div class="wrap">
-          <p class="section-kicker"><span class="dot"></span> 02 / EXPERIENCE</p>
-          <h2 id="work-title">AMAZON FIRST.<br /><span>THEN WHAT’S NEXT.</span></h2>
-          <p>Current role, earlier internship, and an independent project — three places where I turned data into decisions.</p>
+          <p class="section-kicker"><span class="dot"></span> 02 / SELECTED WORK</p>
+          <h2 id="work-title">SELECTED<br /><span>WORK.</span></h2>
+          <p>What I’ve built, where I built it, and the impact it made.</p>
           <div class="experience-roles" aria-label="Experience and selected work">
-            <a href="#amazon-ft"><span class="role-index">01 / CURRENT</span><strong>AMAZON</strong><span>SOFTWARE DEVELOPMENT ENGINEER</span><span class="role-result">5× faster optimization ↗</span></a>
-            <a href="#amazon-intern"><span class="role-index">02 / PREVIOUS</span><strong>AMAZON</strong><span>SOFTWARE DEVELOPMENT ENGINEERING INTERN</span><span class="role-result">Digital twin across 64 centers ↗</span></a>
+            <a href="#amazon-ft"><span class="role-index">01 / CURRENT · 2026—NOW</span><strong class="employer-mark">amazon</strong><span>SOFTWARE DEVELOPMENT ENGINEER</span><span class="role-result">Optimization &amp; developer tooling ↗</span></a>
+            <a href="#amazon-intern"><span class="role-index">02 / INTERNSHIP · 2025</span><strong class="employer-mark">amazon</strong><span>SOFTWARE DEVELOPMENT ENGINEERING INTERN</span><span class="role-result">Digital twin across 64 centers ↗</span></a>
             <a href="#vector-project"><span class="role-index">03 / PROJECT</span><strong>VECTOR SEARCH</strong><span>INDEPENDENT PROJECT</span><span class="role-result">1st of 500 at hackathon ↗</span></a>
           </div>
         </div>
@@ -62,12 +71,17 @@
           <div class="work-number">01</div>
           <div class="work-copy">
             <p class="work-type">AMAZON / SOFTWARE DEVELOPMENT ENGINEER</p>
-            <h3 id="work-one-title">AMAZON.<br />BETTER SPACE.<br />FASTER SOLVES.</h3>
+            <h3 id="work-one-title">BETTER SPACE.<br />FASTER<br />DECISIONS.</h3>
             <div class="tags"><span>OPTIMIZATION</span><span>AWS BATCH</span><span>DISTRIBUTED SYSTEMS</span></div>
-            <p class="work-description">I reworked a real estate allocation optimizer to reward adjacent placements, achieving a 12% clustering gain without added relocation cost. Then I moved the solve to 23 concurrent AWS Batch workers, cutting runtime by 5× and reducing timeouts from 30% to 4%.</p>
+            <p class="work-description">At Amazon, I work on the optimization systems behind real estate allocation. I redesigned the placement model and the infrastructure that runs it, making solutions both more useful and much faster to produce.</p>
             <div class="work-foot"><span>SEATTLE, WA / 2026—PRESENT</span><span>01 / 03</span></div>
           </div>
           <div class="work-visual"><img src="/assets/sculpture.png" alt="Dramatically lit classical sculpture against a deep blue background" loading="lazy" /></div>
+        </div>
+        <div class="case-breakdown wrap">
+          <div><span>THE PROBLEM</span><p>Improve adjacency in placement decisions without increasing relocation cost, while reducing timeouts in a single-process optimizer.</p></div>
+          <div><span>WHAT I BUILT</span><p>A mixed-integer model using McCormick linearization, then an AWS Batch pipeline that fans out 23 concurrent solvers sized at runtime. I also turned patterns from 15,000+ code reviews into automated verification rules.</p></div>
+          <div><span>THE IMPACT</span><p><strong>12%</strong> better clustering at no extra relocation cost. <strong>5×</strong> faster runtime. Timeouts fell from <strong>30% to 4%</strong>; backtesting found 500+ defects with an 84% acceptance rate.</p></div>
         </div>
       </article>
 
@@ -76,12 +90,17 @@
           <div class="work-number">02</div>
           <div class="work-copy">
             <p class="work-type">AMAZON / SOFTWARE DEVELOPMENT ENGINEERING INTERN</p>
-            <h3 id="work-two-title">AMAZON.<br />A DIGITAL TWIN<br />AT SCALE.</h3>
+            <h3 id="work-two-title">A DIGITAL TWIN<br />AT FULFILLMENT<br />SCALE.</h3>
             <div class="tags"><span>REACT</span><span>OPENSEARCH</span><span>SERVERLESS</span></div>
-            <p class="work-description">I built a serverless digital twin platform spanning 64 fulfillment centers, with more than 100 embedded dashboards. A configuration-driven pipeline ingests over 5 million rows a day across 25 metrics, while the API returns results in under 500 milliseconds.</p>
+            <p class="work-description">During my Amazon internship, I built a digital twin platform that gave operations teams a shared, current view of fulfillment centers instead of disconnected dashboards and manual updates.</p>
             <div class="work-foot"><span>BELLEVUE, WA / SUMMER 2025</span><span>02 / 03</span></div>
           </div>
           <div class="work-visual"><img src="/assets/crystalline.jpg" alt="Ethereal portrait with luminous crystalline forms and motion blur" loading="lazy" /></div>
+        </div>
+        <div class="case-breakdown wrap">
+          <div><span>THE PROBLEM</span><p>Bring operational data from dozens of facilities into one reliable interface that teams could explore quickly.</p></div>
+          <div><span>WHAT I BUILT</span><p>An authenticated Cloudscape React frontend with deep links and 100+ embedded dashboards, plus a configuration-driven ingestion path through S3, SQS, OSIS, OpenSearch, and DynamoDB.</p></div>
+          <div><span>THE IMPACT</span><p><strong>64</strong> fulfillment centers, <strong>5M+</strong> rows ingested daily across 25 metrics, and API responses under <strong>500 ms</strong> with 99% uptime.</p></div>
         </div>
       </article>
 
@@ -92,11 +111,16 @@
             <p class="work-type">INDEPENDENT PROJECT / HACKATHON WINNER</p>
             <h3 id="work-three-title">FINDING THE<br />FEELING IN<br />MUSIC.</h3>
             <div class="tags"><span>VECTOR DATABASES</span><span>NLP</span><span>SPOTIFY API</span></div>
-            <p class="work-description">I led a Spotify recommendation project that turns lyrics into 24-dimensional sentiment vectors and retrieves songs by mood using Pinecone and nearest-neighbor search. The project took first place in a 500-person hackathon.</p>
+            <p class="work-description">I led a small team building a different way to find music: search by emotional tone rather than just genre or artist.</p>
             <a class="text-link work-link" href="https://github.com/Varun-Gangavarapu/VectorDatabaseMoodAnalysis" target="_blank" rel="noopener noreferrer">EXPLORE THE PROJECT <span aria-hidden="true">↗</span></a>
             <div class="work-foot"><span>PERSONAL PROJECT / 2024</span><span>03 / 03</span></div>
           </div>
           <div class="work-visual"><img src="/assets/visor.jpg" alt="Futuristic portrait with a glowing amber visor" loading="lazy" /></div>
+        </div>
+        <div class="case-breakdown wrap">
+          <div><span>THE IDEA</span><p>Give listeners a way to discover songs that match a feeling, even when they cannot name a genre or artist.</p></div>
+          <div><span>WHAT I BUILT</span><p>A pipeline combining Spotify and Musixmatch data with a transformer to create 24-dimensional sentiment vectors, stored in Pinecone for nearest-neighbor retrieval. I also built the interactive frontend.</p></div>
+          <div><span>THE IMPACT</span><p><strong>1st place</strong> in a hackathon with 500 entrants, with a working full-stack recommendation experience.</p></div>
         </div>
       </article>
 

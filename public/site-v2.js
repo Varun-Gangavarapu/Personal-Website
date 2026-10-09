@@ -31,6 +31,33 @@ document.addEventListener('scroll', onScroll, {passive: true});
 onScroll();
 document.getElementById('year').textContent = new Date().getFullYear();
 
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.querySelector('.hero-video')?.pause();
+const cinematic = document.querySelector('.cinematic');
+const cinematicVideo = document.querySelector('.cinematic-video');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+if (cinematic && cinematicVideo && !reducedMotion.matches) {
+  cinematicVideo.pause();
+  let frameRequested = false;
+  const updateFilm = () => {
+    frameRequested = false;
+    const travel = Math.max(1, cinematic.offsetHeight - window.innerHeight);
+    const progress = Math.min(1, Math.max(0, -cinematic.getBoundingClientRect().top / travel));
+    cinematic.style.setProperty('--cinematic-progress', progress.toFixed(4));
+    cinematic.style.setProperty('--cinematic-caption', String(Math.max(0, 1 - progress * 2.5)));
+    cinematic.style.setProperty('--cinematic-wash', String(Math.min(1, Math.max(0, (progress - .96) * 25))));
+    if (cinematicVideo.readyState >= 1 && Number.isFinite(cinematicVideo.duration)) {
+      const time = Math.min(cinematicVideo.duration - .02, progress * cinematicVideo.duration);
+      if (Math.abs(cinematicVideo.currentTime - time) > .035) cinematicVideo.currentTime = time;
+    }
+  };
+  const requestFilmFrame = () => {
+    if (!frameRequested) {
+      frameRequested = true;
+      requestAnimationFrame(updateFilm);
+    }
+  };
+  cinematicVideo.addEventListener('loadedmetadata', requestFilmFrame);
+  window.addEventListener('scroll', requestFilmFrame, {passive: true});
+  window.addEventListener('resize', requestFilmFrame);
+  requestFilmFrame();
 }

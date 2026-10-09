@@ -17,12 +17,12 @@ export default function Home({ markup }: Props) {
   return (
     <>
       <Head>
-        <title>Varun Gangavarapu — Software Engineer at Amazon</title>
+        <title>Varun Gangavarapu — Software Engineer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#eee9d7" />
         <meta name="description" content="Varun Gangavarapu is a software development engineer at Amazon building optimization systems, data platforms, and thoughtful digital experiences." />
-        <meta property="og:title" content="Varun Gangavarapu — Software Engineer at Amazon" />
-        <meta property="og:description" content="Amazon engineering, digital twins, and vector search — selected work by Varun Gangavarapu." />
+        <meta property="og:title" content="Varun Gangavarapu — Software Engineer" />
+        <meta property="og:description" content="Selected work in optimization, digital twins, and vector search." />
         <meta property="og:image" content="/assets/hero-goggles-poster.jpg" />
         <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
         <link rel="preload" href="/assets/hero-goggles.mp4" as="video" type="video/mp4" />
