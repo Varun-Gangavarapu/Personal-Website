@@ -17,7 +17,7 @@ links.forEach(link => link.addEventListener('click', () => {
 }));
 
 const sections = ['home', 'work', 'about', 'contact'].map(id => document.getElementById(id));
-const darkSections = [...document.querySelectorAll('.personal-intro, .work-intro, .work-panel-two, .work-panel-three, .about-section, .capabilities, .contact')];
+const darkSections = [...document.querySelectorAll('.work-panel-two, .work-panel-three, .about-section, .capabilities, .contact')];
 const onScroll = () => {
   header.classList.toggle('is-scrolled', window.scrollY > 36);
   header.classList.toggle('is-dark', darkSections.some(section => {
@@ -38,42 +38,12 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 const cinematic = document.querySelector('.cinematic');
 const cinematicVideo = document.querySelector('.cinematic-video');
-const personalIntro = document.querySelector('.personal-intro');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
 const smoothstep = (start, end, value) => {
   const position = clamp((value - start) / (end - start));
   return position * position * (3 - 2 * position);
 };
-
-if (personalIntro && !reducedMotion.matches) {
-  const lines = [...personalIntro.querySelectorAll('.intro-line')];
-  const phrases = [...personalIntro.querySelectorAll('.intro-phrase, .intro-pill')];
-  const actions = personalIntro.querySelector('.intro-actions');
-  const updateIntro = () => {
-    // Reveal as the chapter enters the viewport, so its headline is ready when visible.
-    const entry = window.innerHeight - personalIntro.getBoundingClientRect().top;
-    const progress = clamp(entry / (window.innerHeight * 1.2));
-    lines.forEach((line, index) => {
-      const reveal = smoothstep(-.07 + index * .1, .2 + index * .1, progress);
-      line.style.opacity = String(reveal);
-      line.style.transform = `translateY(${(1 - reveal) * 70}px)`;
-      line.style.clipPath = `inset(0 0 ${(1 - reveal) * 100}% 0)`;
-    });
-    phrases.forEach((phrase, index) => {
-      const reveal = smoothstep(.26 + index * .065, .47 + index * .065, progress);
-      phrase.style.opacity = String(.15 + reveal * .85);
-      phrase.style.transform = `translateY(${(1 - reveal) * 15}px)`;
-    });
-    const actionReveal = smoothstep(.64, .85, progress);
-    actions.style.opacity = String(actionReveal);
-    actions.style.transform = `translateY(${(1 - actionReveal) * 20}px)`;
-    actions.style.pointerEvents = actionReveal > .9 ? 'auto' : 'none';
-  };
-  window.addEventListener('scroll', updateIntro, {passive: true});
-  window.addEventListener('resize', updateIntro);
-  updateIntro();
-}
 
 if (cinematic && cinematicVideo && !reducedMotion.matches) {
   document.documentElement.classList.add('has-film');
@@ -83,6 +53,8 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
   const redRole = cinematic.querySelector('.red-title-role');
   const redFooter = cinematic.querySelector('.red-title-footer');
   const redDescription = cinematic.querySelector('.red-title-description');
+  const redPills = [...cinematic.querySelectorAll('.red-title-pills span')];
+  const redActions = cinematic.querySelector('.red-title-actions');
   const descriptionWords = redDescription.textContent.trim().split(/\s+/);
   redDescription.replaceChildren();
   descriptionWords.forEach((word, index) => {
@@ -128,12 +100,19 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
     wordElements.forEach((word, index) => {
       revealElement(word, smoothstep(.8 + index * .005, .88 + index * .005, progress), 17);
     });
+    redPills.forEach((pill, index) => revealElement(pill, smoothstep(.82 + index * .018, .9 + index * .018, progress), 18));
+    revealElement(redActions, smoothstep(.88, .96, progress), 25);
+    redActions.style.pointerEvents = progress > .93 ? 'auto' : 'none';
     redFooter.style.opacity = String(smoothstep(.87, .96, progress));
     orbitRings.forEach((ring, index) => {
       const reveal = smoothstep(.75 + index * .02, .86 + index * .02, progress);
       ring.style.opacity = String(reveal * .8);
       ring.style.transform = `translateY(${(1 - reveal) * 50}px) scale(${.82 + reveal * .18}) rotate(-5deg)`;
-      const angle = index * 1.6 + ((progress - .72) / .28) * Math.PI * (index % 2 ? -1 : 1) * (1 + index * .12);
+      const scatteredProgress = Math.min(progress, .86);
+      const scatteredAngle = index * 1.6 + ((scatteredProgress - .72) / .28) * Math.PI * (index % 2 ? -1 : 1) * (1 + index * .12);
+      const alignedAngle = Math.PI + Math.round((scatteredAngle - Math.PI) / (Math.PI * 2)) * Math.PI * 2;
+      const alignment = smoothstep(.86, .98, progress);
+      const angle = scatteredAngle + (alignedAngle - scatteredAngle) * alignment;
       const {x, y} = orbitSizes[index];
       orbitDots[index].style.transform = `translate(-50%, -50%) translate3d(${Math.cos(angle) * x}px, ${Math.sin(angle) * y}px, 0)`;
     });

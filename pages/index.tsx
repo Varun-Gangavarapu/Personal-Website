@@ -23,9 +23,9 @@ export default function Home({ markup }: Props) {
         <meta name="description" content="Varun Gangavarapu is a software development engineer at Amazon building optimization systems, data platforms, and thoughtful digital experiences." />
         <meta property="og:title" content="Varun Gangavarapu — Software Engineer" />
         <meta property="og:description" content="Selected work in optimization, digital twins, and vector search." />
-        <meta property="og:image" content="/assets/hero-goggles-poster.jpg" />
+        <meta property="og:image" content="/assets/varun-goggles-poster.jpg" />
         <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-        <link rel="preload" href="/assets/hero-goggles.mp4" as="video" type="video/mp4" />
+        <link rel="preload" href="/assets/varun-goggles-film.mp4" as="video" type="video/mp4" />
       </Head>
       <div dangerouslySetInnerHTML={{ __html: markup }} />
       <Script src="/site-v2.js" strategy="afterInteractive" />
