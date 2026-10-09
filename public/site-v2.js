@@ -348,7 +348,7 @@ if (asciiArt) {
     const artWidth = mask.naturalWidth * scale;
     const artHeight = mask.naturalHeight * scale;
     const left = (width - artWidth) / 2;
-    const top = mobile ? (height - artHeight) * .4 : (height - artHeight) / 2 - height * .05;
+    const top = mobile ? (height - artHeight) * .4 : (height - artHeight) / 2 + height * .055;
     const characters = '@#%*+=-:.';
     glyphs = [];
     baseContext.font = `${fontSize}px monospace`;
