@@ -132,14 +132,14 @@
 .red-word{display:inline-block;will-change:transform,opacity}
 .red-title-footer{position:absolute;inset:auto 0 25px;display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(21,27,28,.55);padding-top:15px}
 .red-orbit{position:relative;width:100%;height:510px;align-self:center}
-.orbit-ring{position:absolute;left:8%;width:84%;height:13%;border:1px solid rgba(21,27,28,.42);border-radius:50%;transform:rotate(-5deg);opacity:.8;will-change:transform,opacity}
+.orbit-ring{position:absolute;left:8%;width:84%;height:13%;border:1px solid rgba(248,250,248,.82);border-radius:50%;transform:rotate(-5deg);opacity:.8;will-change:transform,opacity}
 .orbit-ring:nth-child(1){top:12%}.orbit-ring:nth-child(2){top:27%}.orbit-ring:nth-child(3){top:42%}.orbit-ring:nth-child(4){top:57%}.orbit-ring:nth-child(5){top:72%}
-.orbit-dot{position:absolute;display:block;width:13px;height:13px;background:#a6e1c9;border-radius:50%;box-shadow:0 0 0 3px rgba(21,27,28,.09);left:50%;top:50%;transform:translate(-50%,-50%)}
+.orbit-dot{position:absolute;display:block;width:13px;height:13px;background:#9fc8dc;border-radius:50%;box-shadow:0 0 0 3px rgba(20,45,60,.2);left:50%;top:50%;transform:translate(-50%,-50%)}
 .orbit-label{position:absolute;left:50%;transform:translateX(-50%);font:700 10px/1 var(--mono);letter-spacing:.15em;color:rgba(21,27,28,.66)}
 .orbit-label-top{top:3%}.orbit-label-bottom{bottom:1%}
 
 /* A black editorial chapter replaces the previous white statement and metrics pages. */
-.personal-intro{height:210svh;min-height:0;padding:0;display:block;background:#090a0a;color:#f0f1ed}
+.personal-intro{height:165svh;min-height:0;padding:0;display:block;background:#090a0a;color:#f0f1ed}
 .intro-stage{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(105px,12vh,145px) 0 25px;overflow:hidden}
 .personal-intro h2{margin:0 0 54px}
 .personal-intro h2 em{color:#ed6541}
@@ -192,7 +192,7 @@
   .orbit-ring{left:7%;width:86%;height:13%}
   .orbit-dot{width:10px;height:10px}
   .red-title-footer{font-size:8px;bottom:14px}
-  .personal-intro{height:240svh;padding:0}
+  .personal-intro{height:165svh;padding:0}
   .intro-stage{height:100svh;padding:88px 0 18px}
   .intro-grid .section-kicker{margin-bottom:36px}
   .personal-intro h2{font-size:clamp(68px,17.6vw,104px);margin-bottom:38px}

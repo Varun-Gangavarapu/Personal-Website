@@ -51,8 +51,9 @@ if (personalIntro && !reducedMotion.matches) {
   const phrases = [...personalIntro.querySelectorAll('.intro-phrase, .intro-pill')];
   const actions = personalIntro.querySelector('.intro-actions');
   const updateIntro = () => {
-    const travel = Math.max(1, personalIntro.offsetHeight - window.innerHeight);
-    const progress = clamp(-personalIntro.getBoundingClientRect().top / travel);
+    // Reveal as the chapter enters the viewport, so its headline is ready when visible.
+    const entry = window.innerHeight - personalIntro.getBoundingClientRect().top;
+    const progress = clamp(entry / (window.innerHeight * 1.2));
     lines.forEach((line, index) => {
       const reveal = smoothstep(-.07 + index * .1, .2 + index * .1, progress);
       line.style.opacity = String(reveal);
