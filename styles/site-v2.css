@@ -558,13 +558,13 @@
 }
 
 /* Center the closing message over the responsive ASCII artwork. */
-.contact{position:relative;isolation:isolate;min-height:calc(100svh - 46px);padding:clamp(95px,11vh,130px) 0 24px;justify-content:center}
+.contact{position:relative;isolation:isolate;min-height:calc(100svh - 46px);padding:clamp(75px,9vh,110px) 0 24px;justify-content:center}
 .contact-grid{display:block;width:min(100% - 44px,1060px);margin:auto;position:relative;z-index:2;text-align:center;isolation:isolate}
-.contact-grid::before{content:"";position:absolute;z-index:-1;inset:-45px -50px;background:radial-gradient(ellipse at center,rgba(23,35,35,.83) 0%,rgba(23,35,35,.68) 48%,rgba(23,35,35,0) 80%);pointer-events:none}
+.contact-grid::before{content:"";position:absolute;z-index:-1;inset:-45px -50px;background:radial-gradient(ellipse at center,rgba(23,35,35,.57) 0%,rgba(23,35,35,.3) 48%,rgba(23,35,35,0) 80%);pointer-events:none}
 .contact .section-kicker{position:absolute;top:-42px;left:0;margin:0}
 .contact-main{width:100%;margin:auto}
 .contact-overline{margin-bottom:19px!important}
-.contact h2{font-size:clamp(72px,8.5vw,130px);line-height:.85;margin:0 auto 24px}
+.contact h2{font-size:clamp(72px,8.5vw,130px);line-height:.85;margin:0 auto clamp(145px,18vh,210px)}
 .contact-main>p:not(.contact-overline){max-width:630px;margin:0 auto 26px;font-size:clamp(15px,1.3vw,19px)}
 .contact-email{width:min(100%,790px);margin:0 auto;justify-content:center;position:relative;padding:0 24px 15px;font-size:clamp(20px,2.3vw,33px)}
 .contact-email span{position:absolute;right:4px}
@@ -572,7 +572,7 @@
 .contact-destinations a{min-height:88px;padding:14px 18px 12px;text-align:left}
 .contact-destinations strong{font-size:clamp(23px,2.25vw,32px)}
 .contact-destinations a>span{right:15px;bottom:12px;font-size:20px}
-.ascii-art{position:absolute;inset:0;z-index:0;width:100%;height:100%;margin:0;opacity:.54}
+.ascii-art{position:absolute;inset:0;z-index:0;width:100%;height:100%;margin:0;opacity:.86}
 .ascii-art-credit{position:relative;z-index:2;width:min(100% - 44px,1060px);margin:30px auto 0;font-size:9px}
 .site-footer{z-index:2;margin-top:clamp(24px,4vh,50px);width:min(100% - 44px,1440px)}
 @media(max-width:700px){
@@ -581,7 +581,7 @@
   .contact-grid::before{inset:-22px -20px}
   .contact .section-kicker{top:-35px;left:0;font-size:9px}
   .contact-overline{margin-bottom:15px!important}
-  .contact h2{font-size:clamp(50px,12vw,81px);margin-bottom:19px}
+  .contact h2{font-size:clamp(50px,12vw,81px);margin-bottom:clamp(80px,12vh,115px)}
   .contact-main>p:not(.contact-overline){font-size:13px;line-height:1.35;margin-bottom:22px}
   .contact-email{font-size:clamp(14px,4vw,21px);padding:0 17px 11px;white-space:nowrap}
   .contact-destinations{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:22px}
@@ -590,7 +590,7 @@
   .contact-destinations small{font-size:8px}
   .contact-destinations strong{font-size:clamp(15px,4.1vw,23px)}
   .contact-destinations a>span{right:5px;bottom:8px;font-size:14px}
-  .ascii-art{height:100%;margin:0;opacity:.4}
+  .ascii-art{height:100%;margin:0;opacity:.65}
   .ascii-art-credit{width:min(100% - 36px,520px);margin-top:23px;font-size:7px}
   .site-footer{width:min(100% - 36px,520px);margin-top:25px}
 }

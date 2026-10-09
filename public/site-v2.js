@@ -199,15 +199,15 @@ if (asciiArt) {
     context.clearRect(0, 0, width, height);
     context.drawImage(baseCanvas, 0, 0, width, height);
     if (!pointer || reducedMotion.matches) return;
-    const radius = Math.min(190, width * .24);
+    const radius = Math.min(300, width * .3);
     context.font = `${fontSize}px monospace`;
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     for (const glyph of glyphs) {
       const distance = Math.hypot(glyph.x - pointer.x, glyph.y - pointer.y);
       if (distance >= radius) continue;
-      const glow = (1 - distance / radius) ** 2;
-      context.fillStyle = `rgba(187, 245, 211, ${Math.min(.9, glyph.alpha * glow * .85)})`;
+      const glow = 1 - distance / radius;
+      context.fillStyle = `rgba(225, 255, 237, ${Math.min(1, glow * (.55 + glyph.alpha * 1.8))})`;
       context.fillText(glyph.char, glyph.x, glyph.y);
     }
   };
@@ -230,13 +230,15 @@ if (asciiArt) {
     fontSize = width < 600 ? 4.4 : Math.min(8.5, Math.max(6, width / 195));
     const stepX = fontSize * .72;
     const stepY = fontSize * 1.22;
-    const scale = Math.min(width / mask.naturalWidth, height / mask.naturalHeight);
+    const mobile = width < 600;
+    const scale = mobile
+      ? Math.min(width * 1.7 / mask.naturalWidth, height * .42 / mask.naturalHeight)
+      : Math.min(width / mask.naturalWidth, height / mask.naturalHeight);
     const artWidth = mask.naturalWidth * scale;
     const artHeight = mask.naturalHeight * scale;
     const left = (width - artWidth) / 2;
-    const top = (height - artHeight) / 2;
+    const top = mobile ? (height - artHeight) * .4 : (height - artHeight) / 2 + height * .055;
     const characters = '@#%*+=-:.';
-    const mobile = width < 600;
     glyphs = [];
     baseContext.font = `${fontSize}px monospace`;
     baseContext.textAlign = 'center';
@@ -250,9 +252,9 @@ if (asciiArt) {
         if (alpha < .13) continue;
         const tone = sourcePixels[pixel] / 255;
         const char = characters[Math.min(characters.length - 1, Math.floor(tone * characters.length))];
-        const opacity = Math.min(mobile ? .88 : .74, Math.max(mobile ? .2 : .14, alpha * (mobile ? .9 : .72) + (1 - tone) * .15));
+        const opacity = Math.min(mobile ? .96 : .9, Math.max(mobile ? .3 : .26, alpha * (mobile ? .9 : .82) + (1 - tone) * .18));
         glyphs.push({x, y, char, alpha});
-        baseContext.fillStyle = `rgba(103, 190, 159, ${opacity})`;
+        baseContext.fillStyle = `rgba(126, 220, 184, ${opacity})`;
         baseContext.fillText(char, x, y);
       }
     }
