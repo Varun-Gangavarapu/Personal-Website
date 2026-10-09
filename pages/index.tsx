@@ -25,6 +25,7 @@ export default function Home({ markup }: Props) {
         <meta property="og:description" content="Selected work in optimization, digital twins, and vector search." />
         <meta property="og:image" content="/assets/varun-goggles-poster.jpg" />
         <link rel="icon" href="/assets/varun-g-favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/assets/varun-g-apple-touch.png" sizes="180x180" />
         <link rel="preload" href="/assets/varun-goggles-film.mp4" as="video" type="video/mp4" />
       </Head>
       <div dangerouslySetInnerHTML={{ __html: markup }} />

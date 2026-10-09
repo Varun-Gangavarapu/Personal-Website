@@ -170,10 +170,12 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
     const frame = Math.min(63, Math.floor(progress * 64));
     if (frame === lastMobileFrame) return;
     mobileFrameContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-    const scale = Math.max(bounds.width / 240, bounds.height / 520);
-    const width = 240 * scale;
-    const height = 520 * scale;
-    mobileFrameContext.drawImage(mobileSprite, (frame % 8) * 240, Math.floor(frame / 8) * 520, 240, 520, (bounds.width - width) / 2, (bounds.height - height) / 2, width, height);
+    const frameWidth = mobileSprite.naturalWidth / 8;
+    const frameHeight = mobileSprite.naturalHeight / 8;
+    const scale = Math.max(bounds.width / frameWidth, bounds.height / frameHeight);
+    const width = frameWidth * scale;
+    const height = frameHeight * scale;
+    mobileFrameContext.drawImage(mobileSprite, (frame % 8) * frameWidth, Math.floor(frame / 8) * frameHeight, frameWidth, frameHeight, (bounds.width - width) / 2, (bounds.height - height) / 2, width, height);
     lastMobileFrame = frame;
   };
   const loadMobileFrames = () => {
@@ -183,7 +185,7 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
       mobileSpriteReady = true;
       drawMobileFrame(clamp(renderedProgress / .74));
     };
-    mobileSprite.src = '/assets/varun-mobile-film-sprite.webp';
+    mobileSprite.src = '/assets/varun-mobile-film-sprite-hd.webp';
   };
   if (mobileFilmQuery.matches) loadMobileFrames();
   const revealElement = (element, reveal, distance = 28) => {
