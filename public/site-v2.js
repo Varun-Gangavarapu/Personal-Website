@@ -37,11 +37,16 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 if (cinematic && cinematicVideo && !reducedMotion.matches) {
   cinematicVideo.pause();
+  let targetProgress = 0;
+  let renderedProgress = 0;
   let frameRequested = false;
-  const updateFilm = () => {
-    frameRequested = false;
-    const travel = Math.max(1, cinematic.offsetHeight - window.innerHeight);
-    const progress = Math.min(1, Math.max(0, -cinematic.getBoundingClientRect().top / travel));
+  let lastFrameTime = 0;
+  const renderFilm = now => {
+    const elapsed = lastFrameTime ? Math.min(100, now - lastFrameTime) : 16;
+    lastFrameTime = now;
+    renderedProgress += (targetProgress - renderedProgress) * (1 - Math.exp(-elapsed / 90));
+    if (Math.abs(targetProgress - renderedProgress) < .0005) renderedProgress = targetProgress;
+    const progress = renderedProgress;
     cinematic.style.setProperty('--cinematic-progress', progress.toFixed(4));
     cinematic.style.setProperty('--cinematic-caption', String(Math.max(0, 1 - progress * 2.5)));
     cinematic.style.setProperty('--cinematic-wash', String(Math.min(1, Math.max(0, (progress - .96) * 25))));
@@ -49,15 +54,19 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
       const time = Math.min(cinematicVideo.duration - .02, progress * cinematicVideo.duration);
       if (Math.abs(cinematicVideo.currentTime - time) > .035) cinematicVideo.currentTime = time;
     }
+    if (renderedProgress !== targetProgress) requestAnimationFrame(renderFilm);
+    else { frameRequested = false; lastFrameTime = 0; }
   };
-  const requestFilmFrame = () => {
+  const updateTarget = () => {
+    const travel = Math.max(1, cinematic.offsetHeight - window.innerHeight);
+    targetProgress = Math.min(1, Math.max(0, -cinematic.getBoundingClientRect().top / travel));
     if (!frameRequested) {
       frameRequested = true;
-      requestAnimationFrame(updateFilm);
+      requestAnimationFrame(renderFilm);
     }
   };
-  cinematicVideo.addEventListener('loadedmetadata', requestFilmFrame);
-  window.addEventListener('scroll', requestFilmFrame, {passive: true});
-  window.addEventListener('resize', requestFilmFrame);
-  requestFilmFrame();
+  cinematicVideo.addEventListener('loadedmetadata', updateTarget);
+  window.addEventListener('scroll', updateTarget, {passive: true});
+  window.addEventListener('resize', updateTarget);
+  updateTarget();
 }

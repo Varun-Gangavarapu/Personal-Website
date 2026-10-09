@@ -30,23 +30,27 @@
     </header>
 
     <main id="main">
-      <section class="cinematic" id="home" aria-label="Opening film">
+      <section class="cinematic" id="home" aria-labelledby="hero-title">
         <div class="cinematic-stage">
           <video class="cinematic-video" muted playsinline preload="auto" poster="/assets/hero-goggles-poster.jpg" aria-hidden="true">
             <source src="/assets/hero-goggles.mp4" type="video/mp4" />
           </video>
           <div class="cinematic-wash" aria-hidden="true"></div>
-          <div class="cinematic-caption"><span>VARUN GANGAVARAPU<br />SOFTWARE ENGINEER</span><span>SCROLL TO ENTER &nbsp;↓</span></div>
+          <div class="cinematic-caption wrap">
+            <div class="cinematic-intro"><h1 id="hero-title">Hi, I’m Varun.<br />I make complex<br /><em>work feel simple.</em></h1></div>
+            <div class="cinematic-aside"><p>SOFTWARE ENGINEER IN SEATTLE. I BUILD OPTIMIZATION, DATA, AND PRODUCT SYSTEMS FROM INFRASTRUCTURE TO INTERFACE.</p><a href="#work">VIEW MY WORK <span aria-hidden="true">↗</span></a></div>
+          </div>
+          <div class="cinematic-scroll-cue" aria-hidden="true">SCROLL TO EXPLORE&nbsp; ↓</div>
           <div class="cinematic-progress" aria-hidden="true"><span></span></div>
         </div>
       </section>
 
-      <section class="personal-intro" aria-labelledby="hero-title">
+      <section class="personal-intro" aria-labelledby="intro-title">
         <div class="wrap intro-grid">
           <p class="section-kicker">01 / INTRODUCTION</p>
           <div>
-            <h1 id="hero-title">HI, I’M<br /><em>VARUN.</em></h1>
-            <p>I make complex systems feel useful — from the algorithms behind a decision to the interface that helps someone act on it.</p>
+            <h2 id="intro-title">FROM IDEA<br /><em>TO IMPACT.</em></h2>
+            <p>I think across the stack: from the algorithms behind a decision to the interface that helps someone act on it.</p>
             <div class="intro-actions"><a class="split-button" href="#work"><span>EXPLORE MY WORK</span><span class="button-arrow" aria-hidden="true">↗</span></a><a class="intro-resume" href="/assets/Varun_Gangavarapu_Resume.pdf" target="_blank" rel="noopener noreferrer">VIEW RÉSUMÉ ↗</a></div>
           </div>
         </div>
