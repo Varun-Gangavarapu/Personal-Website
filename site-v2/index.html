@@ -23,9 +23,8 @@
       </button>
       <nav id="main-nav" class="main-nav" aria-label="Main navigation">
         <a href="#home" data-section="home"><span>01</span> HOME</a>
-        <a href="#work" data-section="work"><span>02</span> WORK</a>
-        <a href="#about" data-section="about"><span>03</span> ABOUT</a>
-        <a href="#contact" data-section="contact"><span>04</span> CONTACT</a>
+        <a href="#work" data-section="work"><span>02</span> TIMELINE</a>
+        <a href="#contact" data-section="contact"><span>03</span> CONTACT</a>
       </nav>
     </header>
 
@@ -38,7 +37,7 @@
           <div class="cinematic-wash" aria-hidden="true"></div>
           <div class="cinematic-caption wrap">
             <div class="cinematic-intro"><h1 id="hero-title">Hi, I’m Varun.<br />I make complex<br /><em>work feel simple.</em></h1></div>
-            <div class="cinematic-aside"><p>SOFTWARE ENGINEER IN SEATTLE. I BUILD OPTIMIZATION, DATA, AND PRODUCT SYSTEMS FROM INFRASTRUCTURE TO INTERFACE.</p><a href="#work">VIEW MY WORK <span aria-hidden="true">↗</span></a></div>
+            <div class="cinematic-aside"><p class="current-role"><span class="live-dot" aria-hidden="true"></span><span>Software Development Engineer <strong>@ Amazon</strong></span></p><a href="#work">VIEW MY WORK <span aria-hidden="true">↗</span></a></div>
           </div>
           <div class="red-title-screen">
             <div class="red-title-grid wrap">
@@ -47,7 +46,6 @@
                 <h2><span class="red-title-line">VARUN</span><span class="red-title-line">GANGAVARAPU<span class="red-title-period">.</span></span></h2>
                 <p class="red-title-role">SOFTWARE DEVELOPMENT ENGINEER</p>
                 <p class="red-title-description">I build systems that turn complex ideas into useful tools, from optimization and data platforms to the interfaces people rely on.</p>
-                <div class="red-title-pills" aria-label="Areas I work across"><span>ALGORITHM</span><span>DATA PLATFORMS</span><span>INTERFACE</span></div>
                 <div class="red-title-actions"><a class="split-button" href="#work"><span>EXPLORE MY WORK</span><span class="button-arrow" aria-hidden="true">↗</span></a><a class="red-resume" href="/assets/Varun_Gangavarapu_Resume.pdf" target="_blank" rel="noopener noreferrer">VIEW RÉSUMÉ ↗</a></div>
               </div>
               <div class="red-orbit" aria-hidden="true">
@@ -59,7 +57,7 @@
                 <span class="orbit-label orbit-label-top">INPUT</span><span class="orbit-label orbit-label-bottom">INSIGHT</span>
               </div>
             </div>
-            <div class="red-title-footer wrap"><span>OPTIMIZATION · DATA · PRODUCT</span><span>SCROLL TO EXPLORE ↓</span></div>
+            <div class="red-title-footer wrap"><span>SCROLL TO EXPLORE ↓</span></div>
           </div>
           <div class="cinematic-scroll-cue" aria-hidden="true">SCROLL TO EXPLORE&nbsp; ↓</div>
           <div class="cinematic-progress" aria-hidden="true"><span></span></div>
@@ -153,101 +151,69 @@
 
       <section class="work-intro" id="work" aria-labelledby="work-title">
         <div class="wrap">
-          <p class="section-kicker"><span class="dot"></span> 02 / SELECTED WORK</p>
-          <h2 id="work-title">SELECTED<br /><span>WORK.</span></h2>
-          <p>What I’ve built, where I built it, and the impact it made.</p>
-          <div class="experience-roles" aria-label="Experience and selected work">
-            <a href="#amazon-ft"><span class="role-index">01 / CURRENT · 2026—NOW</span><strong class="employer-mark">amazon</strong><span>SOFTWARE DEVELOPMENT ENGINEER</span><span class="role-result">Optimization &amp; developer tooling ↗</span></a>
-            <a href="#amazon-intern"><span class="role-index">02 / INTERNSHIP · 2025</span><strong class="employer-mark">amazon</strong><span>SOFTWARE DEVELOPMENT ENGINEERING INTERN</span><span class="role-result">Digital twin across 64 centers ↗</span></a>
-            <a href="#vector-project"><span class="role-index">03 / PROJECT</span><strong>VECTOR SEARCH</strong><span>INDEPENDENT PROJECT</span><span class="role-result">1st of 500 at hackathon ↗</span></a>
+          <div class="work-intro-top"><p class="section-kicker"><span class="dot"></span> 02 / TIMELINE</p><span>A RUNNING RECORD / 2022—NOW</span></div>
+          <div class="work-intro-heading"><h2 id="work-title">THE PATH<br /><em>SO FAR.</em></h2><p>The places I’ve learned, built, and put ideas to work.</p></div>
+
+          <div class="timeline-list" aria-label="Timeline of work and education">
+              <a class="timeline-entry timeline-current" href="#amazon-ft"><span class="timeline-logo logo-amazon"><img src="/assets/brand/amazon.png" alt="Amazon logo" /></span><span class="timeline-details"><span class="timeline-status"><span class="dot" aria-hidden="true"></span> CURRENT / FULL TIME</span><strong>Amazon</strong><span class="timeline-role">Software Development Engineer</span><small>Optimization systems and developer tooling · Seattle, WA</small></span><time datetime="2026-06">JUN 2026—PRESENT</time><span class="timeline-arrow" aria-hidden="true">↗</span></a>
+              <a class="timeline-entry" href="#amazon-intern"><span class="timeline-logo logo-amazon"><img src="/assets/brand/amazon.png" alt="Amazon logo" /></span><span class="timeline-details"><strong>Amazon</strong><span class="timeline-role">Software Development Engineering Intern</span><small>Digital twin platform for fulfillment operations · Bellevue, WA</small></span><time datetime="2025-05">MAY—AUG 2025</time><span class="timeline-arrow" aria-hidden="true">↗</span></a>
+              <a class="timeline-entry" href="#vector-project"><span class="timeline-logo logo-hackru"><img src="/assets/brand/hackru.png" alt="HackRU logo" /></span><span class="timeline-details"><strong>HackRU</strong><span class="timeline-role">1st Place · Spotify Recommendation Engine</span><small>Vector search project built with a team</small></span><time datetime="2024-03">MAR 2024</time><span class="timeline-arrow" aria-hidden="true">↗</span></a>
+              <div class="timeline-entry"><span class="timeline-logo logo-amneal"><img src="/assets/brand/amneal.svg" alt="Amneal Pharmaceuticals logo" /></span><span class="timeline-details"><strong>Amneal Pharmaceuticals</strong><span class="timeline-role">Software Engineering Intern</span><small>Supply chain data, demand forecasting, and AWS cost reduction · Bridgewater, NJ</small></span><time datetime="2023-06">JUN—AUG 2023</time></div>
+              <div class="timeline-entry"><span class="timeline-logo logo-rutgers"><img src="/assets/brand/rutgers.svg" alt="Rutgers University logo" /></span><span class="timeline-details"><strong>Rutgers University</strong><span class="timeline-role">B.S. in Computer Science</span><small>New Brunswick, NJ</small></span><time datetime="2022-09">SEP 2022—MAY 2026</time></div>
           </div>
+          <p class="timeline-hint">THREE SELECTED CASE STUDIES FOLLOW <span aria-hidden="true">↓</span></p>
         </div>
       </section>
 
       <article class="work-panel work-panel-one" id="amazon-ft" aria-labelledby="work-one-title">
-        <div class="work-grid wrap">
-          <div class="work-number">01</div>
-          <div class="work-copy">
-            <p class="work-type">AMAZON / SOFTWARE DEVELOPMENT ENGINEER</p>
-            <h3 id="work-one-title">BETTER SPACE.<br />FASTER<br />DECISIONS.</h3>
-            <div class="tags"><span>OPTIMIZATION</span><span>AWS BATCH</span><span>DISTRIBUTED SYSTEMS</span></div>
-            <p class="work-description">At Amazon, I work on the optimization systems behind real estate allocation. I redesigned the placement model and the infrastructure that runs it, making solutions both more useful and much faster to produce.</p>
-            <div class="work-foot"><span>SEATTLE, WA / 2026—PRESENT</span><span>01 / 03</span></div>
+        <div class="wrap work-case-head">
+          <div class="work-case-meta"><span>01 / CURRENT WORK</span><span>SEATTLE, WA · 2026—NOW</span></div>
+          <div class="work-case-intro">
+            <div class="work-case-copy"><p class="work-case-eyebrow">EMPLOYER / AMAZON</p><h3 id="work-one-title" class="work-company amazon-mark">amazon</h3><p class="work-role">Software Development Engineer</p><p class="work-deck">I work on the systems that turn complex space allocation decisions into plans teams can use.</p><div class="tags"><span>MIXED INTEGER PROGRAMMING</span><span>AWS BATCH</span><span>AGENT TOOLING</span></div></div>
+            <div class="work-case-image"><img src="/assets/sculpture.png" alt="Dramatically lit classical sculpture against a deep blue background" loading="lazy" /></div>
           </div>
-          <div class="work-visual"><img src="/assets/sculpture.png" alt="Dramatically lit classical sculpture against a deep blue background" loading="lazy" /></div>
         </div>
-        <div class="case-breakdown wrap">
-          <div><span>THE PROBLEM</span><p>Improve adjacency in placement decisions without increasing relocation cost, while reducing timeouts in a single-process optimizer.</p></div>
-          <div><span>WHAT I BUILT</span><p>A mixed-integer model using McCormick linearization, then an AWS Batch pipeline that fans out 23 concurrent solvers sized at runtime. I also turned patterns from 15,000+ code reviews into automated verification rules.</p></div>
-          <div><span>THE IMPACT</span><p><strong>12%</strong> better clustering at no extra relocation cost. <strong>5×</strong> faster runtime. Timeouts fell from <strong>30% to 4%</strong>; backtesting found 500+ defects with an 84% acceptance rate.</p></div>
+        <div class="work-story wrap" aria-label="Amazon engineering outcomes">
+          <div class="work-story-item"><span class="story-step">01 / THE MODEL</span><div><h4>Make placement better.</h4><p>I replaced a geometric bisection heuristic with a mixed integer program using McCormick linearization to reward adjacent placements without adding relocation cost.</p></div><strong class="story-metric">12%<small>clustering gain</small></strong></div>
+          <div class="work-story-item"><span class="story-step">02 / THE SCALE</span><div><h4>Solve in parallel.</h4><p>I moved the optimizer from one process to an AWS Batch pipeline that fans out 23 solvers sized at runtime.</p></div><strong class="story-metric">5×<small>faster runtime</small></strong></div>
+          <div class="work-story-item"><span class="story-step">03 / THE CRAFT</span><div><h4>Turn reviews into rules.</h4><p>I mined more than 15,000 review comments into verification rules for an engineering agent, making recurring failure patterns easier to catch.</p></div><strong class="story-metric">500+<small>defects found in backtesting</small></strong></div>
         </div>
       </article>
 
       <article class="work-panel work-panel-two" id="amazon-intern" aria-labelledby="work-two-title">
-        <div class="work-grid wrap">
-          <div class="work-number">02</div>
-          <div class="work-copy">
-            <p class="work-type">AMAZON / SOFTWARE DEVELOPMENT ENGINEERING INTERN</p>
-            <h3 id="work-two-title">A DIGITAL TWIN<br />AT FULFILLMENT<br />SCALE.</h3>
-            <div class="tags"><span>REACT</span><span>OPENSEARCH</span><span>SERVERLESS</span></div>
-            <p class="work-description">During my Amazon internship, I built a digital twin platform that gave operations teams a shared, current view of fulfillment centers instead of disconnected dashboards and manual updates.</p>
-            <div class="work-foot"><span>BELLEVUE, WA / SUMMER 2025</span><span>02 / 03</span></div>
+        <div class="wrap work-case-head">
+          <div class="work-case-meta"><span>02 / INTERNSHIP</span><span>BELLEVUE, WA · SUMMER 2025</span></div>
+          <div class="work-case-intro">
+            <div class="work-case-copy"><p class="work-case-eyebrow">EMPLOYER / AMAZON</p><h3 id="work-two-title" class="work-company amazon-mark">amazon</h3><p class="work-role">Software Development Engineering Intern</p><p class="work-deck">I built a digital twin platform that gave operations teams a shared view of their fulfillment centers.</p><div class="tags"><span>REACT</span><span>OPENSEARCH</span><span>DYNAMODB</span><span>AWS LAMBDA</span></div></div>
+            <div class="work-case-image"><img src="/assets/crystalline.jpg" alt="Ethereal portrait with luminous crystalline forms and motion blur" loading="lazy" /></div>
           </div>
-          <div class="work-visual"><img src="/assets/crystalline.jpg" alt="Ethereal portrait with luminous crystalline forms and motion blur" loading="lazy" /></div>
         </div>
-        <div class="case-breakdown wrap">
-          <div><span>THE PROBLEM</span><p>Bring operational data from dozens of facilities into one reliable interface that teams could explore quickly.</p></div>
-          <div><span>WHAT I BUILT</span><p>An authenticated Cloudscape React frontend with deep links and 100+ embedded dashboards, plus a configuration-driven ingestion path through S3, SQS, OSIS, OpenSearch, and DynamoDB.</p></div>
-          <div><span>THE IMPACT</span><p><strong>64</strong> fulfillment centers, <strong>5M+</strong> rows ingested daily across 25 metrics, and API responses under <strong>500 ms</strong> with 99% uptime.</p></div>
+        <div class="work-story wrap" aria-label="Amazon internship outcomes">
+          <div class="work-story-item"><span class="story-step">01 / THE PLATFORM</span><div><h4>One view of operations.</h4><p>I built a serverless digital twin platform for real-time operational visibility across Amazon fulfillment centers.</p></div><strong class="story-metric">64<small>centers connected</small></strong></div>
+          <div class="work-story-item"><span class="story-step">02 / THE INTERFACE</span><div><h4>Make the data usable.</h4><p>An authenticated Cloudscape React interface brought deep links, multiple views, and bidirectional URL state to embedded dashboards.</p></div><strong class="story-metric">100+<small>dashboards supported</small></strong></div>
+          <div class="work-story-item"><span class="story-step">03 / THE PIPELINE</span><div><h4>Onboard without code changes.</h4><p>Configuration-driven ingestion through S3, SQS, OSIS, OpenSearch, and DynamoDB handled 25 metrics and kept queries responsive.</p></div><strong class="story-metric">5M+<small>rows each day</small></strong></div>
         </div>
       </article>
 
       <article class="work-panel work-panel-three" id="vector-project" aria-labelledby="work-three-title">
-        <div class="work-grid wrap">
-          <div class="work-number">03</div>
-          <div class="work-copy">
-            <p class="work-type">INDEPENDENT PROJECT / HACKATHON WINNER</p>
-            <h3 id="work-three-title">FINDING THE<br />FEELING IN<br />MUSIC.</h3>
-            <div class="tags"><span>VECTOR DATABASES</span><span>NLP</span><span>SPOTIFY API</span></div>
-            <p class="work-description">I led a small team building a different way to find music: search by emotional tone rather than just genre or artist.</p>
-            <a class="text-link work-link" href="https://github.com/Varun-Gangavarapu/VectorDatabaseMoodAnalysis" target="_blank" rel="noopener noreferrer">EXPLORE THE PROJECT <span aria-hidden="true">↗</span></a>
-            <div class="work-foot"><span>PERSONAL PROJECT / 2024</span><span>03 / 03</span></div>
+        <div class="wrap work-case-head">
+          <div class="work-case-meta"><span>03 / INDEPENDENT PROJECT</span><span>HACKATHON · 2024</span></div>
+          <div class="work-case-intro">
+            <div class="work-case-copy"><p class="work-case-eyebrow">PROJECT / SPOTIFY RECOMMENDATIONS</p><h3 id="work-three-title" class="work-company vector-mark">VECTOR<br />SEARCH</h3><p class="work-role">Recommendation engine for music by mood</p><p class="work-deck">A different way to discover music: start with how a song feels, not just its genre or artist.</p><div class="tags"><span>PYTHON</span><span>PINECONE</span><span>EMBEDDINGS</span><span>JAVASCRIPT</span></div><a class="text-link work-link" href="https://github.com/Varun-Gangavarapu/VectorDatabaseMoodAnalysis" target="_blank" rel="noopener noreferrer">VIEW THE PROJECT <span aria-hidden="true">↗</span></a></div>
+            <div class="work-case-image"><img src="/assets/visor.jpg" alt="Futuristic portrait with a glowing amber visor" loading="lazy" /></div>
           </div>
-          <div class="work-visual"><img src="/assets/visor.jpg" alt="Futuristic portrait with a glowing amber visor" loading="lazy" /></div>
         </div>
-        <div class="case-breakdown wrap">
-          <div><span>THE IDEA</span><p>Give listeners a way to discover songs that match a feeling, even when they cannot name a genre or artist.</p></div>
-          <div><span>WHAT I BUILT</span><p>A pipeline combining Spotify and Musixmatch data with a transformer to create 24-dimensional sentiment vectors, stored in Pinecone for nearest-neighbor retrieval. I also built the interactive frontend.</p></div>
-          <div><span>THE IMPACT</span><p><strong>1st place</strong> in a hackathon with 500 entrants, with a working full-stack recommendation experience.</p></div>
+        <div class="work-story wrap" aria-label="Vector search project outcomes">
+          <div class="work-story-item"><span class="story-step">01 / THE IDEA</span><div><h4>Search for a feeling.</h4><p>My team built a recommendation experience that lets listeners find songs by emotional tone.</p></div><strong class="story-metric">500<small>hackathon entrants</small></strong></div>
+          <div class="work-story-item"><span class="story-step">02 / THE ENGINE</span><div><h4>Turn music into vectors.</h4><p>Spotify and Musixmatch data fed a transformer that produced 24-dimensional sentiment vectors, then Pinecone handled nearest-neighbor retrieval.</p></div><strong class="story-metric">24D<small>sentiment space</small></strong></div>
+          <div class="work-story-item"><span class="story-step">03 / THE RESULT</span><div><h4>Ship the experience.</h4><p>I built the interactive frontend and helped take the full stack prototype from idea to a working demo.</p></div><strong class="story-metric">1st<small>place</small></strong></div>
         </div>
       </article>
 
-      <section class="about-section" id="about" aria-labelledby="about-title">
-        <div class="wrap about-grid">
-          <div class="section-kicker"><span class="dot"></span> 03 / THE APPROACH</div>
-          <div class="about-main">
-            <h2 id="about-title">FROM THE BIG<br />PICTURE TO THE<br /><em>SMALLEST DETAIL.</em></h2>
-            <div class="about-lower">
-              <p>I’m a software development engineer at Amazon and a Rutgers computer science graduate. I work across optimization, cloud infrastructure, data systems, and the interfaces people use to make sense of them.</p>
-              <div class="about-aside"><span>MY FOCUS</span><p>Make ambitious ideas dependable, measurable, and intuitive.</p><a class="text-link" href="/assets/Varun_Gangavarapu_Resume.pdf" target="_blank" rel="noopener noreferrer">VIEW RÉSUMÉ <span aria-hidden="true">↗</span></a></div>
-            </div>
-          </div>
-        </div>
-        <div class="about-footer wrap"><span>ENGINEERING WITH INTENT</span><span>(01 — 03)</span></div>
-      </section>
-
-      <section class="capabilities" aria-labelledby="capabilities-title">
-        <div class="wrap capabilities-grid">
-          <p class="section-kicker"><span class="dot"></span> THE TOOLKIT</p>
-          <div><h2 id="capabilities-title">TOOLS CHANGE.<br /><em>THINKING ENDURES.</em></h2><p>I move between systems and surfaces to solve the problem in front of me.</p></div>
-          <div class="cap-list"><div><span>01 / LANGUAGES</span><p>Java · Python · TypeScript · SQL · Go</p></div><div><span>02 / PLATFORMS</span><p>AWS · Docker · Kubernetes · OpenSearch</p></div><div><span>03 / EXPERIENCES</span><p>React · Next.js · Spring Boot · Flask</p></div></div>
-        </div>
-      </section>
-
       <section class="contact" id="contact" aria-labelledby="contact-title">
         <div class="wrap contact-grid">
-          <p class="section-kicker"><span class="dot"></span> 04 / GET IN TOUCH</p>
-          <div><h2 id="contact-title">LET’S BUILD<br />SOMETHING<br /><em>THAT MATTERS.</em></h2><p>Have an interesting problem, opportunity, or idea? I’d love to hear about it.</p><a class="contact-email" href="mailto:varunsgang@gmail.com">VARUNSGANG@GMAIL.COM <span aria-hidden="true">↗</span></a></div>
+          <p class="section-kicker"><span class="dot"></span> 03 / GET IN TOUCH</p>
+          <div class="contact-main"><p class="contact-overline">THE NEXT CONVERSATION</p><h2 id="contact-title">HAVE A GOOD<br /><em>PROBLEM?</em></h2><p>Tell me what you’re building and what needs to work better. I’m always up for a thoughtful conversation.</p><a class="contact-email" href="mailto:varunsgang@gmail.com">VARUNSGANG@GMAIL.COM <span aria-hidden="true">↗</span></a></div>
         </div>
         <footer class="site-footer wrap"><a class="wordmark" href="#home">varun<span>/</span>g</a><div class="footer-links"><a href="https://www.linkedin.com/in/varungangavarapu/" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a><a href="https://github.com/Varun-Gangavarapu" target="_blank" rel="noopener noreferrer">GITHUB ↗</a><a href="/assets/Varun_Gangavarapu_Resume.pdf" target="_blank" rel="noopener noreferrer">RÉSUMÉ ↗</a></div><span>© <span id="year">2026</span> VARUN GANGAVARAPU</span></footer>
       </section>

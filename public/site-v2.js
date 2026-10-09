@@ -16,8 +16,8 @@ links.forEach(link => link.addEventListener('click', () => {
   nav.classList.remove('is-open');
 }));
 
-const sections = ['home', 'work', 'about', 'contact'].map(id => document.getElementById(id));
-const darkSections = [...document.querySelectorAll('.work-panel-two, .work-panel-three, .about-section, .capabilities, .contact')];
+const sections = ['home', 'work', 'contact'].map(id => document.getElementById(id));
+const darkSections = [...document.querySelectorAll('.work-panel-three, .contact')];
 const onScroll = () => {
   header.classList.toggle('is-scrolled', window.scrollY > 36);
   header.classList.toggle('is-dark', darkSections.some(section => {
@@ -53,7 +53,6 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
   const redRole = cinematic.querySelector('.red-title-role');
   const redFooter = cinematic.querySelector('.red-title-footer');
   const redDescription = cinematic.querySelector('.red-title-description');
-  const redPills = [...cinematic.querySelectorAll('.red-title-pills span')];
   const redActions = cinematic.querySelector('.red-title-actions');
   const descriptionWords = redDescription.textContent.trim().split(/\s+/);
   redDescription.replaceChildren();
@@ -107,7 +106,6 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
     wordElements.forEach((word, index) => {
       revealElement(word, smoothstep(.8 + index * .005, .88 + index * .005, progress), 17);
     });
-    redPills.forEach((pill, index) => revealElement(pill, smoothstep(.82 + index * .018, .9 + index * .018, progress), 18));
     revealElement(redActions, smoothstep(.88, .96, progress), 25);
     redActions.style.pointerEvents = progress > .93 ? 'auto' : 'none';
     redFooter.style.opacity = String(smoothstep(.87, .96, progress));
@@ -146,16 +144,28 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
   updateTarget();
 }
 
-// Let work images and case details enter as the reader reaches them.
-if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+// Keep the editorial reveals tied to scroll position so they reverse naturally.
+if (!reducedMotion.matches) {
   document.documentElement.classList.add('has-motion');
-  document.querySelectorAll('.work-intro h2, .experience-roles a, .work-copy h3, .work-description, .work-visual, .case-breakdown > div, .about-main h2, .capabilities h2').forEach(element => element.classList.add('scroll-reveal'));
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target);
+  const revealElements = [...document.querySelectorAll('.work-intro h2, .work-intro-heading p, .timeline-entry, .work-case-copy, .work-case-image, .work-story-item, .contact h2, .contact-main>p, .contact-email')];
+  revealElements.forEach(element => element.classList.add('scroll-reveal'));
+  let revealRequested = false;
+  const renderReveals = () => {
+    revealRequested = false;
+    const viewport = window.innerHeight;
+    revealElements.forEach(element => {
+      const rect = element.getBoundingClientRect();
+      const progress = smoothstep(viewport * .94, viewport * .34, rect.top);
+      element.style.opacity = String(progress);
+      element.style.transform = `translate3d(0, ${(1 - progress) * 42}px, 0)`;
     });
-  }, {threshold: .12, rootMargin: '0px 0px -7% 0px'});
-  document.querySelectorAll('.scroll-reveal').forEach(element => revealObserver.observe(element));
+  };
+  const requestReveals = () => {
+    if (revealRequested) return;
+    revealRequested = true;
+    requestAnimationFrame(renderReveals);
+  };
+  window.addEventListener('scroll', requestReveals, {passive: true});
+  window.addEventListener('resize', requestReveals);
+  requestReveals();
 }
