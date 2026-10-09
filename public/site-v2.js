@@ -67,6 +67,13 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
   const wordElements = [...redDescription.querySelectorAll('.red-word')];
   const orbitRings = [...cinematic.querySelectorAll('.red-orbit .orbit-ring')];
   const orbitDots = orbitRings.map(ring => ring.querySelector('.orbit-dot'));
+  const orbitPaths = [
+    { start: -.35, turns: 1.05 },
+    { start: 2.5, turns: -1.5 },
+    { start: 4.15, turns: 1.85 },
+    { start: 1.1, turns: -.85 },
+    { start: 5.55, turns: 1.3 }
+  ];
   let orbitSizes = [];
   const measureOrbit = () => {
     orbitSizes = orbitRings.map(ring => ({x: ring.clientWidth / 2, y: ring.clientHeight / 2}));
@@ -108,11 +115,12 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
       const reveal = smoothstep(.75 + index * .02, .86 + index * .02, progress);
       ring.style.opacity = String(reveal * .8);
       ring.style.transform = `translateY(${(1 - reveal) * 50}px) scale(${.82 + reveal * .18}) rotate(-5deg)`;
-      const scatteredProgress = Math.min(progress, .86);
-      const scatteredAngle = index * 1.6 + ((scatteredProgress - .72) / .28) * Math.PI * (index % 2 ? -1 : 1) * (1 + index * .12);
-      const alignedAngle = Math.PI + Math.round((scatteredAngle - Math.PI) / (Math.PI * 2)) * Math.PI * 2;
-      const alignment = smoothstep(.86, .98, progress);
-      const angle = scatteredAngle + (alignedAngle - scatteredAngle) * alignment;
+      const { start, turns } = orbitPaths[index];
+      const travel = clamp((progress - .74) / .2);
+      const travellingAngle = start + turns * Math.PI * 2 * travel;
+      const centerAngle = Math.PI / 2 + Math.round((travellingAngle - Math.PI / 2) / (Math.PI * 2)) * Math.PI * 2;
+      const settle = smoothstep(.92, .985, progress);
+      const angle = travellingAngle + (centerAngle - travellingAngle) * settle;
       const {x, y} = orbitSizes[index];
       orbitDots[index].style.transform = `translate(-50%, -50%) translate3d(${Math.cos(angle) * x}px, ${Math.sin(angle) * y}px, 0)`;
     });
