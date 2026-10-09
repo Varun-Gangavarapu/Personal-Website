@@ -2,7 +2,7 @@ const finePointer = window.matchMedia('(any-hover: hover) and (any-pointer: fine
 const siteCursor = document.createElement('div');
 siteCursor.className = 'site-cursor';
 siteCursor.setAttribute('aria-hidden', 'true');
-siteCursor.innerHTML = '<span class="site-cursor-dot"></span><span class="site-cursor-pulse"></span>';
+siteCursor.innerHTML = '<span class="site-cursor-dot"></span>';
 document.body.append(siteCursor);
 let cursorClickTimer;
 const moveSiteCursor = event => {
@@ -19,7 +19,7 @@ document.addEventListener('pointerdown', event => {
   void siteCursor.offsetWidth;
   siteCursor.classList.add('is-clicked');
   clearTimeout(cursorClickTimer);
-  cursorClickTimer = setTimeout(() => siteCursor.classList.remove('is-clicked'), 420);
+  cursorClickTimer = setTimeout(() => siteCursor.classList.remove('is-clicked'), 600);
 });
 document.documentElement.addEventListener('pointerleave', () => siteCursor.classList.remove('is-visible'));
 window.addEventListener('blur', () => siteCursor.classList.remove('is-visible'));

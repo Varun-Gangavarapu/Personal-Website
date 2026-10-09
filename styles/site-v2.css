@@ -460,19 +460,15 @@
 /* A single contrast-aware cursor for fine pointing devices. */
 .site-cursor{display:none;position:fixed;top:0;left:0;width:0;height:0;z-index:2147483647;pointer-events:none;opacity:0;mix-blend-mode:difference;transform:translate3d(-100px,-100px,0);transition:opacity .12s ease;will-change:transform}
 .site-cursor.is-visible{opacity:1}
-.site-cursor-dot,.site-cursor-pulse{position:absolute;top:-5px;left:-5px;width:10px;height:10px;box-sizing:border-box;border-radius:50%}
-.site-cursor-dot{background:#fff}
-.site-cursor-pulse{border:1.5px solid #fff;opacity:0}
-.site-cursor.is-clicked .site-cursor-dot{animation:site-cursor-tap .32s ease-out}
-.site-cursor.is-clicked .site-cursor-pulse{animation:site-cursor-ring .4s ease-out}
-@keyframes site-cursor-tap{0%,100%{transform:scale(1)}35%{transform:scale(.55)}}
-@keyframes site-cursor-ring{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(4)}}
+.site-cursor-dot{position:absolute;top:-5px;left:-5px;width:10px;height:10px;box-sizing:border-box;border-radius:50%;background:#fff}
+.site-cursor.is-clicked .site-cursor-dot{animation:site-cursor-tap .56s ease-in-out}
+@keyframes site-cursor-tap{0%,100%{transform:scale(1)}38%{transform:scale(.55)}}
 @media(any-hover:hover) and (any-pointer:fine){
   .site-cursor{display:block}
   html.has-custom-cursor,html.has-custom-cursor *,html.has-custom-cursor *::before,html.has-custom-cursor *::after{cursor:none!important}
 }
 @media(prefers-reduced-motion:reduce){
-  .site-cursor,.site-cursor.is-clicked .site-cursor-dot,.site-cursor.is-clicked .site-cursor-pulse{transition:none;animation:none}
+  .site-cursor,.site-cursor.is-clicked .site-cursor-dot{transition:none;animation:none}
 }
 
 @media(max-width:1000px){
