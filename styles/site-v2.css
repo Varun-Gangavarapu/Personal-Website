@@ -618,3 +618,12 @@
   .ascii-art{height:100%;margin:0;opacity:.65}
   .site-footer{width:min(100% - 36px,520px);margin-top:25px}
 }
+
+/* iOS can discard a paused video's frame while it is repeatedly seeked during scroll. */
+.cinematic-mobile-frames{display:none}
+@media(max-width:700px) and (orientation:portrait){
+  .cinematic-stage{height:100dvh;min-height:100svh}
+  .cinematic-video{display:none}
+  .cinematic-mobile-frames{position:absolute;inset:0;display:block;width:100%;height:100%;background:#eee9d7 url('/assets/varun-goggles-poster.jpg') center/cover no-repeat}
+}
+@media(prefers-reduced-motion:reduce){.cinematic-mobile-frames{display:none}}

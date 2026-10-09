@@ -104,6 +104,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 const cinematic = document.querySelector('.cinematic');
 const cinematicVideo = document.querySelector('.cinematic-video');
+const cinematicStage = cinematic?.querySelector('.cinematic-stage');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
 const smoothstep = (start, end, value) => {
@@ -148,6 +149,43 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
   let renderedProgress = 0;
   let frameRequested = false;
   let lastFrameTime = 0;
+  const mobileFilmQuery = window.matchMedia('(max-width: 700px) and (orientation: portrait)');
+  const mobileFrames = cinematic.querySelector('.cinematic-mobile-frames');
+  const mobileFrameContext = mobileFrames?.getContext('2d', {alpha: false});
+  let mobileSprite;
+  let mobileSpriteReady = false;
+  let lastMobileFrame = -1;
+  const drawMobileFrame = progress => {
+    if (!mobileFilmQuery.matches || !mobileSpriteReady || !mobileFrameContext) return;
+    const bounds = mobileFrames.getBoundingClientRect();
+    if (!bounds.width || !bounds.height) return;
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    const pixelWidth = Math.round(bounds.width * pixelRatio);
+    const pixelHeight = Math.round(bounds.height * pixelRatio);
+    if (mobileFrames.width !== pixelWidth || mobileFrames.height !== pixelHeight) {
+      mobileFrames.width = pixelWidth;
+      mobileFrames.height = pixelHeight;
+      lastMobileFrame = -1;
+    }
+    const frame = Math.min(63, Math.floor(progress * 64));
+    if (frame === lastMobileFrame) return;
+    mobileFrameContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    const scale = Math.max(bounds.width / 240, bounds.height / 520);
+    const width = 240 * scale;
+    const height = 520 * scale;
+    mobileFrameContext.drawImage(mobileSprite, (frame % 8) * 240, Math.floor(frame / 8) * 520, 240, 520, (bounds.width - width) / 2, (bounds.height - height) / 2, width, height);
+    lastMobileFrame = frame;
+  };
+  const loadMobileFrames = () => {
+    if (mobileSprite || !mobileFrameContext) return;
+    mobileSprite = new Image();
+    mobileSprite.onload = () => {
+      mobileSpriteReady = true;
+      drawMobileFrame(clamp(renderedProgress / .74));
+    };
+    mobileSprite.src = '/assets/varun-mobile-film-sprite.webp';
+  };
+  if (mobileFilmQuery.matches) loadMobileFrames();
   const revealElement = (element, reveal, distance = 28) => {
     element.style.opacity = String(reveal);
     element.style.transform = `translateY(${(1 - reveal) * distance}px)`;
@@ -188,16 +226,22 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
       const {x, y} = orbitSizes[index];
       orbitDots[index].style.transform = `translate(-50%, -50%) translate3d(${Math.cos(angle) * x}px, ${Math.sin(angle) * y}px, 0)`;
     });
-    if (cinematicVideo.readyState >= 1 && Number.isFinite(cinematicVideo.duration)) {
-      const videoProgress = clamp(renderedProgress / .74);
+    const videoProgress = clamp(renderedProgress / .74);
+    if (mobileFilmQuery.matches) drawMobileFrame(videoProgress);
+    else if (cinematicVideo.readyState >= 1 && Number.isFinite(cinematicVideo.duration)) {
       const time = Math.min(cinematicVideo.duration - .02, videoProgress * cinematicVideo.duration);
       if (Math.abs(cinematicVideo.currentTime - time) > .035) cinematicVideo.currentTime = time;
     }
     if (renderedProgress !== targetProgress) requestAnimationFrame(renderFilm);
     else { frameRequested = false; lastFrameTime = 0; }
   };
+  mobileFilmQuery.addEventListener('change', () => {
+    lastMobileFrame = -1;
+    if (mobileFilmQuery.matches) loadMobileFrames();
+    updateTarget();
+  });
   const updateTarget = () => {
-    const travel = Math.max(1, cinematic.offsetHeight - window.innerHeight);
+    const travel = Math.max(1, cinematic.offsetHeight - cinematicStage.offsetHeight);
     targetProgress = Math.min(1, Math.max(0, -cinematic.getBoundingClientRect().top / travel));
     if (!frameRequested) {
       frameRequested = true;
@@ -207,6 +251,7 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
   cinematicVideo.addEventListener('loadedmetadata', updateTarget);
   window.addEventListener('scroll', updateTarget, {passive: true});
   window.addEventListener('resize', () => { measureOrbit(); updateTarget(); });
+  window.visualViewport?.addEventListener('resize', updateTarget);
   updateTarget();
 }
 
