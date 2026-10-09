@@ -502,7 +502,7 @@
 .site-header.is-dark .main-nav .nav-resume{border-color:rgba(240,241,237,.32)}
 @media(max-width:700px){.main-nav .nav-resume{margin:8px 0 0;border-radius:10px;padding:14px 8px}}
 
-/* Keep the original case-study palette and right-hand portrait in one editorial frame. */
+/* Keep the original case-study palette and alternate portrait placement. */
 @media(min-width:701px){
   .work-panel{display:grid;grid-template-columns:minmax(0,48fr) minmax(0,52fr);grid-template-rows:auto auto auto;column-gap:clamp(38px,4vw,64px);align-items:start;align-content:center;min-height:100svh;padding:clamp(70px,7vh,90px) max(22px,calc((100vw - 1440px)/2)) clamp(35px,4vh,48px)}
   .work-case-head,.work-case-intro{display:contents}
@@ -527,6 +527,10 @@
   .work-story-item p{font-size:clamp(13px,1vw,15px);line-height:1.43;max-width:525px}
   .story-metric{grid-column:3;grid-row:1;display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:70px;margin:0;font-size:clamp(25px,2.5vw,36px)}
   .story-metric small{font-size:9px;line-height:1.18;margin:0;max-width:100px}
+  .work-panel-two .work-case-image{grid-column:1}
+  .work-panel-two .work-case-copy,.work-panel-two .work-story{grid-column:2}
+  .work-panel-two .work-case-copy{padding:0 clamp(0px,1vw,12px) 0 0}
+  .work-panel-two .work-story{padding:0 clamp(0px,1vw,12px) 0 0}
 }
 @media(min-width:701px) and (max-width:1100px){
   .work-panel{grid-template-columns:minmax(0,50fr) minmax(0,50fr);column-gap:26px;padding-block:66px 34px}
