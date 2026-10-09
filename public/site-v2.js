@@ -29,7 +29,7 @@ finePointer.addEventListener('change', event => {
   siteCursor.classList.remove('is-visible');
 });
 
-const emailLink = document.querySelector('.contact-email');
+const emailLink = document.querySelector('.contact-email-copy');
 const emailFeedback = document.querySelector('.email-copy-feedback');
 let emailFeedbackTimer;
 emailLink.addEventListener('click', async event => {
@@ -303,7 +303,7 @@ if (asciiArt) {
     const artWidth = mask.naturalWidth * scale;
     const artHeight = mask.naturalHeight * scale;
     const left = (width - artWidth) / 2;
-    const top = mobile ? (height - artHeight) * .4 : (height - artHeight) / 2 + height * .055;
+    const top = mobile ? (height - artHeight) * .4 : (height - artHeight) / 2 - height * .05;
     const characters = '@#%*+=-:.';
     glyphs = [];
     baseContext.font = `${fontSize}px monospace`;
