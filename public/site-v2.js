@@ -105,14 +105,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
 const cinematic = document.querySelector('.cinematic');
 const cinematicVideo = document.querySelector('.cinematic-video');
 const cinematicStage = cinematic?.querySelector('.cinematic-stage');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
 const smoothstep = (start, end, value) => {
   const position = clamp((value - start) / (end - start));
   return position * position * (3 - 2 * position);
 };
 
-if (cinematic && cinematicVideo && !reducedMotion.matches) {
+if (cinematic && cinematicVideo) {
   document.documentElement.classList.add('has-film');
   cinematicVideo.pause();
   const titleLines = [...cinematic.querySelectorAll('.red-title-line')];
@@ -258,7 +257,7 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
 }
 
 // Keep the editorial reveals tied to scroll position so they reverse naturally.
-if (!reducedMotion.matches) {
+{
   document.documentElement.classList.add('has-motion');
   const revealElements = [...document.querySelectorAll('.work-intro h2, .work-intro-heading p, .timeline-entry, .work-case-copy, .work-case-image, .work-story-item, .contact h2, .contact-main>p, .contact-email, .contact-destinations a')];
   revealElements.forEach(element => element.classList.add('scroll-reveal'));
@@ -311,7 +310,7 @@ if (asciiArt) {
     context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     context.clearRect(0, 0, width, height);
     context.drawImage(baseCanvas, 0, 0, width, height);
-    if (!pointer || reducedMotion.matches) return;
+    if (!pointer) return;
     const radius = Math.min(300, width * .3);
     context.font = `${fontSize}px monospace`;
     context.textAlign = 'center';

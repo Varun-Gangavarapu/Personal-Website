@@ -7,7 +7,7 @@
 .contact{min-height:760px;background:#1d2827;color:#f0f1ef;padding:115px 0 24px;display:flex;flex-direction:column;justify-content:space-between}.contact-grid{display:grid;grid-template-columns:31% 69%}.contact h2{font-size:clamp(60px,7.6vw,122px);margin:-10px 0 30px}.contact h2 em{color:#77988a}.contact-grid>div>p{font:16px/1.4 var(--mono);max-width:480px;margin:0 0 48px}.contact-email{font:clamp(17px,2.1vw,31px)/1 var(--mono);text-decoration:none;display:flex;align-items:center;justify-content:space-between;gap:50px;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:16px;width:min(100%,650px)}.contact-email span{font-size:29px}.site-footer{display:grid;grid-template-columns:31% 43% 26%;align-items:end;border-top:1px solid rgba(255,255,255,.2);padding-top:18px}.site-footer .wordmark{font-size:22px}.footer-links{display:flex;gap:24px}.footer-links a,.site-footer>span{font:11px var(--mono);text-decoration:none}.footer-links a:hover{text-decoration:underline}.site-footer>span{text-align:right;white-space:nowrap}
 @media(max-width:1000px){.hero-content{padding-left:5vw}.about-grid,.work-intro .wrap,.contact-grid{grid-template-columns:25% 75%}.capabilities-grid{grid-template-columns:25% 43% 32%}.work-grid{grid-template-columns:7% 45% 48%}.work-copy h3{font-size:clamp(40px,5vw,64px)}.work-type{margin-bottom:38px}.work-description{font-size:13px}.work-visual{min-height:560px}.site-footer{grid-template-columns:25% 48% 27%}}
 @media(max-width:700px){.wrap{width:min(100% - 36px,1440px)}.site-header{padding-inline:18px}.menu-toggle{display:flex;border:0;background:transparent;flex-direction:column;justify-content:center;gap:6px;width:34px;height:34px;padding:0;cursor:pointer}.menu-toggle span{display:block;height:1px;background:currentColor;width:100%}.main-nav{position:absolute;top:48px;left:0;right:0;display:none;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);color:var(--ink);padding:18px;border-bottom:1px solid var(--line)}.main-nav.is-open{display:flex}.main-nav a{font-size:15px;border-radius:0;padding:16px 8px;border-bottom:1px solid var(--line)}.main-nav a.active,.main-nav a:hover{background:transparent;color:var(--ink)}.site-header.is-scrolled .main-nav a.active,.site-header.is-scrolled .main-nav a:hover{background:transparent;color:var(--ink)}.hero{min-height:690px;height:100svh}.hero-video{object-position:55% center}.hero-shade{background:linear-gradient(90deg,rgba(11,18,18,.78),rgba(11,18,18,.28)),linear-gradient(0deg,rgba(7,13,13,.75),transparent 45%)}.hero-content{padding:90px 0 90px}.hero h1{font-size:clamp(57px,12vw,84px)}.hero-intro{font-size:14px;max-width:330px}.hero-bottom{font-size:10px}.hero-bottom span:first-child{display:none}.about-section{min-height:auto;padding:90px 0 24px}.about-grid,.work-intro .wrap,.contact-grid,.capabilities-grid{display:block}.section-kicker{margin-bottom:55px}.about-main h2{font-size:clamp(52px,10vw,76px);margin-bottom:65px}.about-lower{display:block}.about-lower>p{font-size:17px}.about-aside{margin:70px 0 85px}.about-aside p{max-width:310px}.work-intro{min-height:450px;padding:90px 0}.work-intro .section-kicker{margin-bottom:65px}.work-intro h2{font-size:clamp(52px,9.5vw,76px)}.work-intro .wrap>p:last-child{font-size:13px}.work-panel,.work-grid{min-height:0}.work-grid{display:grid;grid-template-columns:45px 1fr;padding:40px 0 25px}.work-number{font-size:18px}.work-copy{padding:0}.work-type{margin:0 0 55px;font-size:11px}.work-copy h3{font-size:clamp(50px,10vw,75px)}.work-description{font-size:14px;max-width:560px}.work-foot{margin-top:45px;font-size:10px}.work-visual{grid-column:1/-1;margin-top:32px;min-height:0;height:clamp(410px,105vw,630px)}.capabilities{padding:90px 0 100px}.capabilities .section-kicker{margin-bottom:65px}.capabilities h2{font-size:clamp(54px,9.5vw,77px)}.capabilities-grid>div:nth-child(2)>p{font-size:14px;margin-bottom:75px}.cap-list{padding:0}.contact{min-height:690px;padding:90px 0 24px}.contact .section-kicker{margin-bottom:60px}.contact h2{font-size:clamp(59px,11vw,82px)}.contact-grid>div>p{font-size:14px}.contact-email{font-size:clamp(14px,4vw,20px)}.site-footer{grid-template-columns:1fr 1fr;gap:30px}.footer-links{grid-column:1/-1;grid-row:1;justify-content:space-between;gap:10px}.site-footer>span{font-size:9px}}
-@media(max-width:380px){.hero h1{font-size:52px}.work-copy h3{font-size:45px}.about-main h2,.work-intro h2,.capabilities h2,.contact h2{font-size:48px}.tags span{font-size:9px}.work-foot{font-size:9px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-track{animation:none}.split-button,.work-visual img,.text-link{transition:none}}
+@media(max-width:380px){.hero h1{font-size:52px}.work-copy h3{font-size:45px}.about-main h2,.work-intro h2,.capabilities h2,.contact h2{font-size:48px}.tags span{font-size:9px}.work-foot{font-size:9px}}
 
 /* Hybrid direction: 1367's cinematic opening, then an employer-led GertiX work flow. */
 :root{--warm:#eee9d7;--orange:#e66a24}
@@ -111,7 +111,6 @@
   .case-breakdown{display:block;padding-block:10px 42px}.case-breakdown>div{padding:16px 0 22px}.case-breakdown p{font-size:13px;margin:13px 0 0;max-width:600px}
 }
 @media(max-width:380px){.personal-intro h2{font-size:68px}.cinematic-intro h1{font-size:31px}.cinematic-aside p{font-size:8px}}
-@media(prefers-reduced-motion:reduce){.cinematic{height:100svh}.cinematic-video{display:none}.cinematic-stage{background:#eee9d7 url('/assets/varun-goggles-poster.jpg') center/cover no-repeat}.cinematic-progress{display:none}}
 
 /* Scroll-led title screen: the film resolves into red before the black chapter. */
 .cinematic{height:560svh;background:#dd422a}
@@ -251,15 +250,6 @@
   .timeline-entry time{grid-column:2;grid-row:2;justify-self:start;text-align:left;font-size:9px;margin-top:4px}
   .timeline-entry .timeline-arrow{position:absolute;right:4px;top:25px;font-size:22px}
   .timeline-hint{margin-left:6px;font-size:9px}
-}
-@media(prefers-reduced-motion:reduce){
-  .cinematic{height:100svh;background:#df3b2e}
-  .cinematic-stage{background:#df3b2e}
-  .cinematic-video,.cinematic-caption,.cinematic-scroll-cue,.cinematic-progress{display:none}
-  .cinematic-wash{opacity:1}
-  .red-title-screen,.has-film .red-title-screen{opacity:1}
-  .red-title-line,.red-word,.red-title-pills span,.red-title-actions{opacity:1!important;transform:none!important;clip-path:none!important}
-  .editorial-ticker .ticker-track{animation:none}
 }
 
 /* Work index, case studies, and direct contact ending. */
@@ -467,9 +457,6 @@
   .site-cursor{display:block}
   html.has-custom-cursor,html.has-custom-cursor *,html.has-custom-cursor *::before,html.has-custom-cursor *::after{cursor:none!important}
 }
-@media(prefers-reduced-motion:reduce){
-  .site-cursor,.site-cursor.is-clicked .site-cursor-dot{transition:none;animation:none}
-}
 
 @media(max-width:1000px){
   .work-case-copy{padding-right:28px}
@@ -510,7 +497,6 @@
   .footer-top{justify-self:end}
   .site-footer>span{grid-column:1/-1;text-align:left}
 }
-@media(prefers-reduced-motion:reduce){.live-dot::after{animation:none;opacity:0}}
 
 .main-nav .nav-resume{border:1px solid rgba(22,28,29,.28);margin-left:3px;padding-inline:17px}
 .site-header.is-dark .main-nav .nav-resume{border-color:rgba(240,241,237,.32)}
@@ -598,7 +584,6 @@
 .site-footer{z-index:2;margin-top:clamp(24px,4vh,50px);width:min(100% - 44px,1440px)}
 .site-footer .email-copy-feedback{position:fixed;z-index:10;left:50%;bottom:clamp(22px,4vh,42px);width:max-content;max-width:calc(100vw - 32px);padding:10px 16px;border:1px solid #9acdb7;border-radius:999px;background:#e7f3ec;color:#172323;box-shadow:0 8px 28px rgba(0,0,0,.2);font:700 11px/1.3 var(--mono);letter-spacing:.025em;text-align:center;opacity:0;pointer-events:none;transform:translate(-50%,8px);transition:opacity .2s ease,transform .2s ease}
 .site-footer .email-copy-feedback.is-visible{opacity:1;transform:translate(-50%,0)}
-@media(prefers-reduced-motion:reduce){.email-copy-feedback{transition:none}}
 @media(max-width:700px){
   .contact{min-height:calc(100svh - 46px);padding:93px 0 20px;justify-content:center}
   .contact-grid{width:min(100% - 36px,520px)}
@@ -626,4 +611,3 @@
   .cinematic-video{display:none}
   .cinematic-mobile-frames{position:absolute;inset:0;display:block;width:100%;height:100%;background:#eee9d7 url('/assets/varun-goggles-poster.jpg') center/cover no-repeat}
 }
-@media(prefers-reduced-motion:reduce){.cinematic-mobile-frames{display:none}}
