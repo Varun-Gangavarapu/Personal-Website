@@ -17,7 +17,7 @@ links.forEach(link => link.addEventListener('click', () => {
 }));
 
 const sections = ['home', 'work', 'about', 'contact'].map(id => document.getElementById(id));
-const darkSections = [...document.querySelectorAll('.personal-intro, .work-panel-two, .work-panel-three, .contact')];
+const darkSections = [...document.querySelectorAll('.personal-intro, .work-intro, .work-panel-two, .work-panel-three, .about-section, .capabilities, .contact')];
 const onScroll = () => {
   header.classList.toggle('is-scrolled', window.scrollY > 36);
   header.classList.toggle('is-dark', darkSections.some(section => {
@@ -38,25 +38,107 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 const cinematic = document.querySelector('.cinematic');
 const cinematicVideo = document.querySelector('.cinematic-video');
+const personalIntro = document.querySelector('.personal-intro');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+const smoothstep = (start, end, value) => {
+  const position = clamp((value - start) / (end - start));
+  return position * position * (3 - 2 * position);
+};
+
+if (personalIntro && !reducedMotion.matches) {
+  const lines = [...personalIntro.querySelectorAll('.intro-line')];
+  const phrases = [...personalIntro.querySelectorAll('.intro-phrase, .intro-pill')];
+  const actions = personalIntro.querySelector('.intro-actions');
+  const updateIntro = () => {
+    const travel = Math.max(1, personalIntro.offsetHeight - window.innerHeight);
+    const progress = clamp(-personalIntro.getBoundingClientRect().top / travel);
+    lines.forEach((line, index) => {
+      const reveal = smoothstep(-.07 + index * .1, .2 + index * .1, progress);
+      line.style.opacity = String(reveal);
+      line.style.transform = `translateY(${(1 - reveal) * 70}px)`;
+      line.style.clipPath = `inset(0 0 ${(1 - reveal) * 100}% 0)`;
+    });
+    phrases.forEach((phrase, index) => {
+      const reveal = smoothstep(.26 + index * .065, .47 + index * .065, progress);
+      phrase.style.opacity = String(.15 + reveal * .85);
+      phrase.style.transform = `translateY(${(1 - reveal) * 15}px)`;
+    });
+    const actionReveal = smoothstep(.64, .85, progress);
+    actions.style.opacity = String(actionReveal);
+    actions.style.transform = `translateY(${(1 - actionReveal) * 20}px)`;
+    actions.style.pointerEvents = actionReveal > .9 ? 'auto' : 'none';
+  };
+  window.addEventListener('scroll', updateIntro, {passive: true});
+  window.addEventListener('resize', updateIntro);
+  updateIntro();
+}
 
 if (cinematic && cinematicVideo && !reducedMotion.matches) {
+  document.documentElement.classList.add('has-film');
   cinematicVideo.pause();
+  const titleLines = [...cinematic.querySelectorAll('.red-title-line')];
+  const redKicker = cinematic.querySelector('.red-title-kicker');
+  const redRole = cinematic.querySelector('.red-title-role');
+  const redFooter = cinematic.querySelector('.red-title-footer');
+  const redDescription = cinematic.querySelector('.red-title-description');
+  const descriptionWords = redDescription.textContent.trim().split(/\s+/);
+  redDescription.replaceChildren();
+  descriptionWords.forEach((word, index) => {
+    const span = document.createElement('span');
+    span.className = 'red-word';
+    span.textContent = word;
+    redDescription.append(span);
+    if (index < descriptionWords.length - 1) redDescription.append(' ');
+  });
+  const wordElements = [...redDescription.querySelectorAll('.red-word')];
+  const orbitRings = [...cinematic.querySelectorAll('.red-orbit .orbit-ring')];
+  const orbitDots = orbitRings.map(ring => ring.querySelector('.orbit-dot'));
+  let orbitSizes = [];
+  const measureOrbit = () => {
+    orbitSizes = orbitRings.map(ring => ({x: ring.clientWidth / 2, y: ring.clientHeight / 2}));
+  };
+  measureOrbit();
   let targetProgress = 0;
   let renderedProgress = 0;
   let frameRequested = false;
   let lastFrameTime = 0;
+  const revealElement = (element, reveal, distance = 28) => {
+    element.style.opacity = String(reveal);
+    element.style.transform = `translateY(${(1 - reveal) * distance}px)`;
+  };
   const renderFilm = now => {
     const elapsed = lastFrameTime ? Math.min(100, now - lastFrameTime) : 16;
     lastFrameTime = now;
     renderedProgress += (targetProgress - renderedProgress) * (1 - Math.exp(-elapsed / 90));
     if (Math.abs(targetProgress - renderedProgress) < .0005) renderedProgress = targetProgress;
-    const progress = renderedProgress;
+    const progress = targetProgress;
     cinematic.style.setProperty('--cinematic-progress', progress.toFixed(4));
-    cinematic.style.setProperty('--cinematic-caption', String(Math.max(0, 1 - progress * 2.5)));
-    cinematic.style.setProperty('--cinematic-wash', String(Math.min(1, Math.max(0, (progress - .78) / .22))));
+    cinematic.style.setProperty('--cinematic-caption', String(1 - smoothstep(0, .38, progress)));
+    cinematic.style.setProperty('--cinematic-wash', String(smoothstep(.59, .77, progress)));
+    cinematic.style.setProperty('--red-opacity', String(smoothstep(.72, .81, progress)));
+    titleLines.forEach((line, index) => {
+      const reveal = smoothstep(.73 + index * .035, .83 + index * .035, progress);
+      revealElement(line, reveal, 85);
+      line.style.clipPath = `inset(0 0 ${(1 - reveal) * 100}% 0)`;
+    });
+    revealElement(redKicker, smoothstep(.72, .8, progress));
+    revealElement(redRole, smoothstep(.8, .89, progress));
+    wordElements.forEach((word, index) => {
+      revealElement(word, smoothstep(.8 + index * .005, .88 + index * .005, progress), 17);
+    });
+    redFooter.style.opacity = String(smoothstep(.87, .96, progress));
+    orbitRings.forEach((ring, index) => {
+      const reveal = smoothstep(.75 + index * .02, .86 + index * .02, progress);
+      ring.style.opacity = String(reveal * .8);
+      ring.style.transform = `translateY(${(1 - reveal) * 50}px) scale(${.82 + reveal * .18}) rotate(-5deg)`;
+      const angle = index * 1.6 + ((progress - .72) / .28) * Math.PI * (index % 2 ? -1 : 1) * (1 + index * .12);
+      const {x, y} = orbitSizes[index];
+      orbitDots[index].style.transform = `translate(-50%, -50%) translate3d(${Math.cos(angle) * x}px, ${Math.sin(angle) * y}px, 0)`;
+    });
     if (cinematicVideo.readyState >= 1 && Number.isFinite(cinematicVideo.duration)) {
-      const time = Math.min(cinematicVideo.duration - .02, progress * cinematicVideo.duration);
+      const videoProgress = clamp(renderedProgress / .74);
+      const time = Math.min(cinematicVideo.duration - .02, videoProgress * cinematicVideo.duration);
       if (Math.abs(cinematicVideo.currentTime - time) > .035) cinematicVideo.currentTime = time;
     }
     if (renderedProgress !== targetProgress) requestAnimationFrame(renderFilm);
@@ -72,11 +154,11 @@ if (cinematic && cinematicVideo && !reducedMotion.matches) {
   };
   cinematicVideo.addEventListener('loadedmetadata', updateTarget);
   window.addEventListener('scroll', updateTarget, {passive: true});
-  window.addEventListener('resize', updateTarget);
+  window.addEventListener('resize', () => { measureOrbit(); updateTarget(); });
   updateTarget();
 }
 
-// Reveal the editorial copy as it enters view. The content stays visible without JS or with reduced motion.
+// Let work images and case details enter as the reader reaches them.
 if (!reducedMotion.matches && 'IntersectionObserver' in window) {
   document.documentElement.classList.add('has-motion');
   document.querySelectorAll('.work-intro h2, .experience-roles a, .work-copy h3, .work-description, .work-visual, .case-breakdown > div, .about-main h2, .capabilities h2').forEach(element => element.classList.add('scroll-reveal'));
@@ -88,69 +170,4 @@ if (!reducedMotion.matches && 'IntersectionObserver' in window) {
     });
   }, {threshold: .12, rootMargin: '0px 0px -7% 0px'});
   document.querySelectorAll('.scroll-reveal').forEach(element => revealObserver.observe(element));
-
-  const dataStory = document.querySelector('.data-story');
-  const orbit = document.querySelector('.data-orbit');
-  const dots = [...orbit.querySelectorAll('.orbit-dot')];
-  const words = ['OPTIMIZATION', 'DIGITAL TWINS', 'VECTOR SEARCH'];
-  const typedFocus = document.querySelector('.typed-focus');
-  let orbitActive = false;
-  let orbitFrame = 0;
-  let orbitSizes = [];
-  let typeStarted = false;
-
-  const measureOrbit = () => {
-    orbitSizes = dots.map(dot => ({x: dot.parentElement.clientWidth / 2, y: dot.parentElement.clientHeight / 2}));
-  };
-  const animateOrbit = now => {
-    orbitFrame = 0;
-    if (!orbitActive || document.hidden) return;
-    dots.forEach((dot, index) => {
-      const angle = index * 1.65 + now * .00038 * (index % 2 ? -1 : 1) * (1 + index * .08);
-      const {x, y} = orbitSizes[index];
-      dot.style.transform = `translate(-50%, -50%) translate3d(${Math.cos(angle) * x}px, ${Math.sin(angle) * y}px, 0)`;
-    });
-    orbitFrame = requestAnimationFrame(animateOrbit);
-  };
-  const startTyping = () => {
-    if (typeStarted) return;
-    typeStarted = true;
-    let word = 0;
-    let characters = words[0].length;
-    let deleting = true;
-    const step = () => {
-      if (document.hidden) return setTimeout(step, 500);
-      const current = words[word];
-      typedFocus.textContent = current.slice(0, characters);
-      if (deleting && characters === 0) {
-        word = (word + 1) % words.length;
-        deleting = false;
-      } else if (!deleting && characters === words[word].length) {
-        deleting = true;
-        return setTimeout(step, 1800);
-      } else {
-        characters += deleting ? -1 : 1;
-      }
-      setTimeout(step, deleting ? 38 : 72);
-    };
-    setTimeout(step, 1800);
-  };
-  const dataObserver = new IntersectionObserver(([entry]) => {
-    orbitActive = entry.isIntersecting;
-    if (!orbitActive) {
-      cancelAnimationFrame(orbitFrame);
-      orbitFrame = 0;
-      return;
-    }
-    dataStory.classList.add('is-visible');
-    measureOrbit();
-    dots.forEach(dot => { dot.style.left = '50%'; dot.style.top = '50%'; });
-    if (!orbitFrame) orbitFrame = requestAnimationFrame(animateOrbit);
-    startTyping();
-  }, {threshold: .05});
-  dataObserver.observe(dataStory);
-  window.addEventListener('resize', measureOrbit);
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && orbitActive && !orbitFrame) orbitFrame = requestAnimationFrame(animateOrbit);
-  });
 }
