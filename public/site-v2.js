@@ -16,7 +16,7 @@ links.forEach(link => link.addEventListener('click', () => {
   nav.classList.remove('is-open');
 }));
 
-const sections = ['home', 'about', 'work', 'contact'].map(id => document.getElementById(id));
+const sections = ['home', 'work', 'about', 'contact'].map(id => document.getElementById(id));
 const onScroll = () => {
   header.classList.toggle('is-scrolled', window.scrollY > 36);
   const current = [...sections].reverse().find(section => section.getBoundingClientRect().top <= window.innerHeight * .35) || sections[0];
@@ -30,3 +30,7 @@ const onScroll = () => {
 document.addEventListener('scroll', onScroll, {passive: true});
 onScroll();
 document.getElementById('year').textContent = new Date().getFullYear();
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelector('.hero-video')?.pause();
+}
