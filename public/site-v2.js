@@ -155,7 +155,10 @@ if (!reducedMotion.matches) {
     const viewport = window.innerHeight;
     revealElements.forEach(element => {
       const rect = element.getBoundingClientRect();
-      const progress = smoothstep(viewport * .94, viewport * .34, rect.top);
+      const earlyReveal = element.matches('.work-story-item, .contact h2, .contact-main>p, .contact-email, .contact-destinations a');
+      const progress = earlyReveal
+        ? smoothstep(viewport * 1.01, viewport * .88, rect.top)
+        : smoothstep(viewport * .94, viewport * .34, rect.top);
       element.style.opacity = String(progress);
       element.style.transform = `translate3d(0, ${(1 - progress) * 42}px, 0)`;
     });
@@ -264,10 +267,11 @@ if (asciiArt) {
   };
   mask.src = '/assets/creation-hands-mask.webp';
   new ResizeObserver(rebuild).observe(asciiArt);
-  asciiArt.addEventListener('pointermove', event => {
+  const contactSection = asciiArt.closest('.contact');
+  contactSection.addEventListener('pointermove', event => {
     const bounds = asciiArt.getBoundingClientRect();
     pointer = {x: event.clientX - bounds.left, y: event.clientY - bounds.top};
     requestPaint();
   });
-  asciiArt.addEventListener('pointerleave', () => {pointer = null; requestPaint();});
+  contactSection.addEventListener('pointerleave', () => {pointer = null; requestPaint();});
 }
