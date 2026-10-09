@@ -1,3 +1,34 @@
+const finePointer = window.matchMedia('(any-hover: hover) and (any-pointer: fine)');
+const siteCursor = document.createElement('div');
+siteCursor.className = 'site-cursor';
+siteCursor.setAttribute('aria-hidden', 'true');
+siteCursor.innerHTML = '<span class="site-cursor-dot"></span><span class="site-cursor-pulse"></span>';
+document.body.append(siteCursor);
+let cursorClickTimer;
+const moveSiteCursor = event => {
+  if (!finePointer.matches || !['mouse', 'pen'].includes(event.pointerType)) return;
+  siteCursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+  siteCursor.classList.add('is-visible');
+  document.documentElement.classList.add('has-custom-cursor');
+};
+document.addEventListener('pointermove', moveSiteCursor, {passive: true});
+document.addEventListener('pointerdown', event => {
+  if (!finePointer.matches || !['mouse', 'pen'].includes(event.pointerType)) return;
+  moveSiteCursor(event);
+  siteCursor.classList.remove('is-clicked');
+  void siteCursor.offsetWidth;
+  siteCursor.classList.add('is-clicked');
+  clearTimeout(cursorClickTimer);
+  cursorClickTimer = setTimeout(() => siteCursor.classList.remove('is-clicked'), 420);
+});
+document.documentElement.addEventListener('pointerleave', () => siteCursor.classList.remove('is-visible'));
+window.addEventListener('blur', () => siteCursor.classList.remove('is-visible'));
+finePointer.addEventListener('change', event => {
+  if (event.matches) return;
+  siteCursor.classList.remove('is-visible');
+  document.documentElement.classList.remove('has-custom-cursor');
+});
+
 const header = document.querySelector('.site-header');
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
