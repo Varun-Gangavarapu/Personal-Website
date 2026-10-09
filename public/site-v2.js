@@ -19,7 +19,7 @@ document.addEventListener('pointerdown', event => {
   void siteCursor.offsetWidth;
   siteCursor.classList.add('is-clicked');
   clearTimeout(cursorClickTimer);
-  cursorClickTimer = setTimeout(() => siteCursor.classList.remove('is-clicked'), 600);
+  cursorClickTimer = setTimeout(() => siteCursor.classList.remove('is-clicked'), 470);
 });
 document.documentElement.addEventListener('pointerleave', () => siteCursor.classList.remove('is-visible'));
 window.addEventListener('blur', () => siteCursor.classList.remove('is-visible'));
@@ -27,6 +27,41 @@ finePointer.addEventListener('change', event => {
   document.documentElement.classList.toggle('has-custom-cursor', event.matches);
   if (event.matches) return;
   siteCursor.classList.remove('is-visible');
+});
+
+const emailLink = document.querySelector('.contact-email');
+const emailFeedback = document.querySelector('.email-copy-feedback');
+let emailFeedbackTimer;
+emailLink.addEventListener('click', async event => {
+  event.preventDefault();
+  const email = emailLink.href.slice('mailto:'.length);
+  let copied = false;
+  try {
+    await navigator.clipboard.writeText(email);
+    copied = true;
+  } catch {
+    const helper = document.createElement('textarea');
+    try {
+      helper.value = email;
+      helper.style.position = 'fixed';
+      helper.style.opacity = '0';
+      document.body.append(helper);
+      helper.select();
+      copied = document.execCommand('copy');
+    } catch {
+      copied = false;
+    } finally {
+      helper.remove();
+    }
+  }
+  if (!copied) {
+    window.location.href = emailLink.href;
+    return;
+  }
+  emailFeedback.textContent = 'Copied email to clipboard';
+  emailFeedback.classList.add('is-visible');
+  clearTimeout(emailFeedbackTimer);
+  emailFeedbackTimer = setTimeout(() => emailFeedback.classList.remove('is-visible'), 2400);
 });
 
 const header = document.querySelector('.site-header');
