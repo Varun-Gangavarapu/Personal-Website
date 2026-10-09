@@ -4,12 +4,12 @@ siteCursor.className = 'site-cursor';
 siteCursor.setAttribute('aria-hidden', 'true');
 siteCursor.innerHTML = '<span class="site-cursor-dot"></span>';
 document.body.append(siteCursor);
+document.documentElement.classList.toggle('has-custom-cursor', finePointer.matches);
 let cursorClickTimer;
 const moveSiteCursor = event => {
   if (!finePointer.matches || !['mouse', 'pen'].includes(event.pointerType)) return;
   siteCursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
   siteCursor.classList.add('is-visible');
-  document.documentElement.classList.add('has-custom-cursor');
 };
 document.addEventListener('pointermove', moveSiteCursor, {passive: true});
 document.addEventListener('pointerdown', event => {
@@ -24,9 +24,9 @@ document.addEventListener('pointerdown', event => {
 document.documentElement.addEventListener('pointerleave', () => siteCursor.classList.remove('is-visible'));
 window.addEventListener('blur', () => siteCursor.classList.remove('is-visible'));
 finePointer.addEventListener('change', event => {
+  document.documentElement.classList.toggle('has-custom-cursor', event.matches);
   if (event.matches) return;
   siteCursor.classList.remove('is-visible');
-  document.documentElement.classList.remove('has-custom-cursor');
 });
 
 const header = document.querySelector('.site-header');
